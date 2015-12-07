@@ -38,7 +38,8 @@ def coordinates_smart(img)
 end
 
 def plot_rect_on_board(x, y, w, h)
-  board = Array.new(SIZE) {Array.new(SIZE) {0}}
+  height = (y + h) > SIZE ? (y + h) : SIZE
+  board = Array.new(height) {Array.new(SIZE) {0}}
   y.upto(y + h - 1) do |one|
     x.upto(x + w - 1) do |two|
       board[one][two] = 1
@@ -48,13 +49,13 @@ def plot_rect_on_board(x, y, w, h)
 end
 
 def render_entire_artboard(img)
-  print " "
-  1.upto(img.first.size) {|n| print " #{n - 1}"}
+  print "   "
+  0.upto(img.first.size - 1) {|n| print n > 9 ? ' ' : " #{n}"}
   print "\n"
   img.each_with_index do |row,r|
-    print r
+    print r > 99 ? '   ' : r.to_s.rjust(3)
     row.each_with_index do |pix,c|
-      print pix == 0 ? ' .' : ' X'
+      print pix != 1 ? ' .' : ' X'
     end
     print "\n"
   end
