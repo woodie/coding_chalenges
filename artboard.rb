@@ -7,12 +7,12 @@ def coordinates_naive(img)
   img.each_with_index do |row,r|
     row.each_with_index do |pix,c|
       if pix == 1
-        x = c if x.nil? 
+        x = c if x.nil?
         y = r if y.nil?
         w = c - x + 1
         h = r - y + 1
-      end  
-    end  
+      end
+    end
   end
   {x:x, y:y, w:w, h:h}
 end
@@ -31,10 +31,10 @@ def coordinates_smart(img)
             return {x:x, y:y, w:w, h:h}
           end
         end
-      end  
-    end  
+      end
+    end
   end
-  nil # noithing found 
+  nil # nothing found
 end
 
 def plot_rect_on_board(x, y, w, h)
