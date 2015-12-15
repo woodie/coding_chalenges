@@ -1,8 +1,9 @@
+#!/usr/bin/env ruby
+
 data = (1..9).to_a.rotate!.rotate!.rotate!
 
 def find_max(a)
-  return a.first if a.size == 1
-  return a.last if a.first < a.last
+  return a.last if a.first <= a.last
   pivot = a.size / 2
   if a[pivot] > a.last
     find_max(a[pivot..-1])
