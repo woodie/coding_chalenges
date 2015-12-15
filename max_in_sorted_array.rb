@@ -1,21 +1,21 @@
 #!/usr/bin/env ruby
 
-data = (1..9).to_a.rotate!.rotate!.rotate!
+data = (1..17).to_a.rotate!.rotate!.rotate!
 
 def find_max(a)
   return a.last if a.first <= a.last
   pivot = a.size / 2
   if a[pivot] > a.last
-    find_max(a[pivot..-1])
+    return find_max(a[pivot..-1])
   else
-    find_max(a[0..(pivot - 1)])
+    return find_max(a[0..(pivot - 1)])
   end
 end
 
-puts data.inspect
-puts find_max(data)
+puts "input: #{data.join(',')}"
+puts "max: #{find_max(data)}"
 
 __END__
 
-[4, 5, 6, 7, 8, 9, 1, 2, 3]
-9
+input: 4,5,6,7,8,9,10,11,12,13,14,15,16,17,1,2,3
+max: 17
