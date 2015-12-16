@@ -76,6 +76,6 @@ function render_entire_artboard(img) {
   console.log(buffer);
 }
 
+render_entire_artboard(board);
 console.log(coordinates_naive(board));
 console.log(coordinates_smart(board));
-render_entire_artboard(board);
