@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-#         "ab"
-#         /  \
+#        "ab"
+#        /  \
 #      "ef"  "gh"
 #     / | \    \
 #  "x" "y" "z"  "p"
