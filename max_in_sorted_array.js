@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
-var data = [4,5,6,7,8,9,10,11,12,13,14,15,16,17,1,2,3];
+var _ = require('underscore');
+
+var range = _.range(1, 18); // 1..17
+var data = _.rest(range, 3).concat(_.first(range,3));
 
 var find_max = function(a) {
   var last = a[a.length - 1];
@@ -15,5 +18,5 @@ var find_max = function(a) {
   }
 }
 
-console.log("input: ", data.join(','));
-console.log("max: ", find_max(data));
+console.log("input:", data.join(','));
+console.log("max:", find_max(data));

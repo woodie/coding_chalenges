@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-data = (1..17).to_a.rotate!.rotate!.rotate!
+data = (1..17).to_a.rotate!(3)
 
 def find_max(a)
   return a.last if a.first <= a.last
