@@ -8,7 +8,7 @@ var s2 = "diwjrhfkehdjfjsodhfjdkdhfjfnskwjf"
 var s3 = "Figjekcjvnskwhfjjdje_dkfoekfhcms_"
 
 function is_permutation(str1, str2) {
-  if (str1.size != str2.size) {
+  if (str1.size !== str2.size) {
   return false;
   }
   var letters = new Array(128);

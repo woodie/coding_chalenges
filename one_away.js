@@ -3,11 +3,11 @@
 "use strict";
 
 function one_edit_away(s1, s2) {
-  if (s1.length == s2.length) {
+  if (s1.length === s2.length) {
     return one_edit_replace(s1, s2);
-  } else if (s1.length + 1 == s2.length) {
+  } else if (s1.length + 1 === s2.length) {
     return one_edit_insert(s1, s2);
-  } else if (s2.length + 1 == s1.length) {
+  } else if (s2.length + 1 === s1.length) {
     return one_edit_insert(s2, s1);
   } else {
     return false;
@@ -31,7 +31,7 @@ function one_edit_insert(s1, s2) {
   var x1 = 0;
   var x2 = 0;
   while (x1 < s1.length && x2 < s2.length) {
-    if (s1[x1] != s2[x2]) {
+    if (s1[x1] !== s2[x2]) {
       if (x1 !== x2) {
         return false;
       }
