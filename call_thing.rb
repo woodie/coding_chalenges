@@ -26,13 +26,13 @@ class Thing
 end
 
 x = Thing.new
-x.add 'thing_1', lambda {|x| x}
-x.add 'thing_1', lambda {|y| y + y}
-x.add 'thing_2', lambda {|z| z.to_i - 1}
-puts x.call 'thing_1', 'ooo'
-puts x.call 'thing_1', 2
-puts x.call 'thing_2', 'ooo'
-puts x.call 'thing_2', 2
+x.add 'thing_1', lambda {|x| puts x}
+x.add 'thing_1', lambda {|y| puts y + y}
+x.add 'thing_2', lambda {|z| puts z.to_i - 1}
+x.call 'thing_1', 'ooo'
+x.call 'thing_1', 2
+x.call 'thing_2', 'ooo'
+x.call 'thing_2', 2
 
 puts x.inspect
 
