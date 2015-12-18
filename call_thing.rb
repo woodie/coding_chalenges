@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-"use strict";
-
 class Thing
   attr_accessor :_actions
   def initialize
