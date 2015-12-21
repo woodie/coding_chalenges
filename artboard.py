@@ -38,7 +38,6 @@ def plot_rect_on_board(x, y, w, h):
   for one in range(y, y + h):
     for two in range(x, x + w):
       board[one][two] = 1
-      pass 
   return board
 
 def render_entire_artboard(img):
