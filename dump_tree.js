@@ -34,7 +34,7 @@ var Tree = (function () {
     return memo;
   };
   Tree.print_tree = function(node) {
-    console.log(node.value + ": ");
+    process.stdout.write(node.value + ": ");
     for (let sub of node.children) {
       Tree.print_tree(sub);
     }
@@ -58,27 +58,17 @@ var root = new Node("ab", [ef,gh]);
 
 console.log(Tree.to_string(root));
 Tree.print_tree(root);
+console.log('');
 var tree = new Tree(root);
 console.log(tree.to_s());
 tree.print();
+console.log('');
 
 /*
 
 ab: ef: x: y: z: gh: p:
-ab:
-ef:
-x:
-y:
-z:
-gh:
-p:
 ab: ef: x: y: z: gh: p:
-ab:
-ef:
-x:
-y:
-z:
-gh:
-p:
+ab: ef: x: y: z: gh: p:
+ab: ef: x: y: z: gh: p:
 
 */
