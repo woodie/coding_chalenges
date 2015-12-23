@@ -7,14 +7,14 @@ s3 = "Figjekcjvnskwhfjjdje_dkfoekfhcms_"
 
 def is_permutation(str1, str2):
   if len(str1) != len(str2):
-    return false 
+    return False
   letters = [0] * 128
   for c in str1:
     letters[ord(c)] += 1
   for c in str2:
     letters[ord(c)] -= 1
     if letters[ord(c)] < 0:
-      return False 
+      return False
   return True
 
 print
@@ -27,7 +27,7 @@ print "is permutation: %s" % is_permutation(s1, s3)
 dkfoekfhcms_Figjekcjvnskwhfjjdje_
 diwjrhfkehdjfjsodhfjdkdhfjfnskwjf
 Figjekcjvnskwhfjjdje_dkfoekfhcms_
-is permutation: false
-is permutation: true
+is permutation: False
+is permutation: True
 
 """
