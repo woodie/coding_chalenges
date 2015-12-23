@@ -20,6 +20,9 @@ var Tree = (function () {
   Tree.prototype.to_s = function () {
     return Tree.to_string(this.root);
   };
+  Tree.prototype.print = function () {
+    Tree.print_tree(this.root);
+  };
   Tree.to_string = function (node) {
     if (typeof memo === "undefined") {
       var memo = '';
@@ -57,6 +60,7 @@ console.log(Tree.to_string(root));
 Tree.print_tree(root);
 var tree = new Tree(root);
 console.log(tree.to_s());
+tree.print();
 
 /*
 
@@ -69,5 +73,12 @@ z:
 gh:
 p:
 ab: ef: x: y: z: gh: p:
+ab:
+ef:
+x:
+y:
+z:
+gh:
+p:
 
 */

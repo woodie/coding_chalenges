@@ -17,8 +17,11 @@ class Tree
   end
 
   def to_s
+    Tree.to_string(root)
+  end
+
+  def print
     Tree.print_tree(root)
-    puts
   end
 
   def self.to_string(node)
@@ -53,10 +56,13 @@ Tree.print_tree(root)
 puts
 puts Tree.to_string(root)
 tree = Tree.new root
-tree.to_s
+tree.print
+puts
+puts tree.to_s
 
 __END__
 
+ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
