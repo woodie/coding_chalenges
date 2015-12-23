@@ -83,7 +83,7 @@ function render_entire_artboard(img) {
   console.log(buffer);
 }
 
-var board = plot_rect_on_board(2,3,4,5);
+var board = plot_rect_on_board(2,3,14,15);
 render_entire_artboard(board);
 console.log(coordinates_naive(board));
 console.log(coordinates_smart(board));
