@@ -17,7 +17,8 @@ class Tree:
 
   @staticmethod
   def to_string(node):
-    memo = '' if (globals().get('memo') == None) else globals().get('memo')
+    if 'memo' not in vars():
+      memo = ''
     memo += node.value + ": "
     for sub in node.children:
       memo += Tree.to_string(sub)
