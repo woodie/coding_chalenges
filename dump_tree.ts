@@ -1,27 +1,26 @@
-#!/usr/bin/env node
+#!/usr/bin/env typescript
 
-"use strict";
-
-var Node = (function () {
-  function Node(value, children) {
+class TreeNode {
+  value: string;
+  children: Array<TreeNode>;
+  constructor(value: string, children?: Array<TreeNode>) {
     this.value = value;
-    this.children = (typeof children === 'undefined') ? [] :
-        Array.isArray(children) ? children : [children];
+    this.children = children || [];
   }
-  return Node;
-})();
+}
 
-var Tree = (function () {
-  function Tree(node) {
+class Tree {
+  root: TreeNode;
+  constructor(root: TreeNode) {
     this.root = root;
-  };
-  Tree.prototype.to_s = function () {
+  }
+  to_s() {
     return Tree.to_string(this.root);
-  };
-  Tree.prototype.print = function () {
+  }
+  print() {
     Tree.print_tree(this.root);
-  };
-  Tree.to_string = function (node) {
+  }
+  static to_string(node) {
     if (typeof memo === "undefined") {
       var memo = '';
     }
@@ -30,15 +29,14 @@ var Tree = (function () {
       memo += Tree.to_string(sub);
     }
     return memo;
-  };
-  Tree.print_tree = function(node) {
+  }
+  static print_tree(node) {
     process.stdout.write(node.value + ": ");
     for (let sub of node.children) {
       Tree.print_tree(sub);
     }
-  };
-  return Tree;
-})();
+  }
+}
 
 //        "ab"
 //        /  \
@@ -46,9 +44,9 @@ var Tree = (function () {
 //     / | \    \
 //  "x" "y" "z"  "p"
 
-var root = new Node("ab", [new Node("ef", [
-    new Node("x"), new Node("y"), new Node("z")]),
-    new Node("gh", new Node("p"))])
+var root = new TreeNode("ab", [new TreeNode("ef", [
+    new TreeNode("x"), new TreeNode("y"), new TreeNode("z")]),
+    new TreeNode("gh", [new TreeNode("p")])])
 
 console.log(Tree.to_string(root));
 Tree.print_tree(root);

@@ -3,9 +3,9 @@
 class Node
   attr_accessor :value, :children
 
-  def initialize(value, children)
+  def initialize(value, children=[])
     self.value = value
-    self.children = children.is_a?(Array) ? children : (children.nil? ? [] : [children])
+    self.children = children.is_a?(Array) ? children : [children]
   end
 end
 
@@ -47,10 +47,9 @@ end
 #     / | \    \
 #  "x" "y" "z"  "p"
 
-root = Node.new("ab", [
-    Node.new("ef", [Node.new("x", nil),
-    Node.new("y", nil), Node.new("z", nil)]),
-    Node.new("gh",  Node.new("p", nil))])
+root = Node.new("ab", [Node.new("ef", [
+    Node.new("x"), Node.new("y"), Node.new("z")]),
+    Node.new("gh", Node.new("p"))])
 
 Tree.print_tree(root)
 puts

@@ -36,9 +36,8 @@ class Tree:
 #     / | \    \
 #  "x" "y" "z"  "p"
 
-root = Node("ab", [
-    Node("ef", [Node("x"),
-    Node("y"), Node("z")]),
+root = Node("ab", [Node("ef", [
+    Node("x"), Node("y"), Node("z")]),
     Node("gh", Node("p"))])
 
 Tree.print_tree(root)
