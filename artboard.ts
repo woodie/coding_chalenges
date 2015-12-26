@@ -1,8 +1,6 @@
-#!/usr/bin/env node
+#!/usr/bin/env typescript
 
-"use strict";
-
-function coordinates_naive(img) {
+function coordinates_naive(img: Array<Array<number>>) {
   var x, y, w, h;
   for (var r = 0; r < img.length; r++) {
     var row = img[r];
@@ -23,7 +21,7 @@ function coordinates_naive(img) {
   return {x:x, y:y, w:w, h:h}
 }
 
-function coordinates_smart(img) {
+function coordinates_smart(img: Array<Array<number>>) {
   for (var r = 0; r < img.length; r++) {
     var row = img[r];
     if (row.indexOf(1) !== -1) {
@@ -46,7 +44,7 @@ function coordinates_smart(img) {
   return null;
 }
 
-function plot_rect_on_board(x, y, w, h) {
+function plot_rect_on_board(x: number, y: number, w: number, h: number) {
   var min = 10;
   var height = (y + h) > min ? (y + h) : min
   var width  = (x + w) > min ? (x + w) : min
@@ -65,7 +63,7 @@ function plot_rect_on_board(x, y, w, h) {
   return board;
 }
 
-function render_entire_artboard(img) {
+function render_entire_artboard(img: Array<Array<number>>) {
   var buffer = '\n   ';
   for (var n = 0; n < img[0].length; n++) {
     buffer += (n > 9) ? ' ' : (" " + n);
