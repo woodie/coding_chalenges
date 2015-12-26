@@ -22,10 +22,7 @@ var Tree = (function () {
     Tree.print_tree(this.root);
   };
   Tree.to_string = function (node) {
-    if (typeof memo === "undefined") {
-      var memo = '';
-    }
-    memo += node.value + ": "
+    var memo = node.value + ": "
     for (let sub of node.children) {
       memo += Tree.to_string(sub);
     }

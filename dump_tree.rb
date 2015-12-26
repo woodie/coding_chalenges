@@ -25,8 +25,7 @@ class Tree
   end
 
   def self.to_string(node)
-    memo = '' if memo.nil?
-    memo += node.value + ": "
+    memo = node.value + ": "
     node.children.each do |sub|
       memo += to_string(sub)
     end
@@ -61,6 +60,7 @@ puts tree.to_s
 
 __END__
 
+ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:

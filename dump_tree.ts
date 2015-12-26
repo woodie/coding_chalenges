@@ -21,10 +21,7 @@ class Tree {
     Tree.print_tree(this.root);
   }
   static to_string(node) {
-    if (typeof memo === "undefined") {
-      var memo = '';
-    }
-    memo += node.value + ": "
+    var memo = node.value + ": "
     for (let sub of node.children) {
       memo += Tree.to_string(sub);
     }

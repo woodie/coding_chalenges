@@ -15,20 +15,11 @@ class Tree:
   def print_out(self):
     Tree.print_tree(self.root)
 
-# @staticmethod
-# def to_string(node):
-#   if 'memo' not in vars():
-#     memo = ''
-#   memo += node.value + ": "
-#   for sub in node.children:
-#     memo += Tree.to_string(sub)
-#   return memo
-
   @staticmethod
-  def to_string(node, memo=''):
-    memo += node.value + ": "
+  def to_string(node):
+    memo = node.value + ": "
     for sub in node.children:
-      memo = Tree.to_string(sub, memo)
+      memo += Tree.to_string(sub)
     return memo
 
   @staticmethod
@@ -57,6 +48,7 @@ print tree.to_s()
 
 """
 
+ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
