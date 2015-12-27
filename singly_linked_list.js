@@ -2,20 +2,21 @@
 
 "use strict";
 
-class ListNode {
-  constructor(value, next) {
+var ListNode = (function () {
+  function ListNode(value, next) {
     this.value = value;
     this.next = next || null;
   }
-}
+  return ListNode;
+})();
 
-class NiceList {
-  constructor(head) {
+var NiceList = (function () {
+  function NiceList(head) {
     this.head = head;
   }
 
   // [a]→ [b]→ [c]→ [d]→ [e]→ [f]→ [g]→ [h]→ [i]→ [j]
-  static generate(start, finish) {
+  NiceList.generate = function (start, finish) {
     start = start || 'a';
     finish = finish || 'j';
     var this_node = null;
@@ -23,11 +24,11 @@ class NiceList {
       this_node = new ListNode(String.fromCharCode(n), this_node);
     }
     return new NiceList(this_node);
-  }
+  };
 
   // [a]→ [b]→ [c]→ [d]→ [e]→ [f]→ [g]→ [h]→ [i]→ [j]
   // !!! WARNING !!!            ↖_________________/
-  loop_back(value) {
+  NiceList.prototype.loop_back = function (value) {
     value = value || 'f';
     var target = null;
     var cursor = this.head;
@@ -41,9 +42,9 @@ class NiceList {
       }
       cursor = cursor.next
     }
-  }
+  };
 
-  has_cycle() {
+  NiceList.prototype.has_cycle = function () {
     var slow = this.head;
     var fast = this.head;
     while (fast && fast.next && fast.next.next) {
@@ -59,9 +60,9 @@ class NiceList {
       }
     }
     return null;
-  }
+  };
 
-  to_string() {
+  NiceList.prototype.to_string = function () {
     var dupe = this.has_cycle();
     var seen = false;
     var memo = '';
@@ -77,9 +78,9 @@ class NiceList {
       }
     }
     return memo += `[${pointer.value}]→ x`;
-  }
+  };
 
-  reverse() {
+  NiceList.prototype.reverse = function () {
     var tail = this.head;
     while (tail.next) {
       var temp = tail.next;
@@ -87,9 +88,9 @@ class NiceList {
       temp.next = this.head;
       this.head = temp;
     }
-  }
+  };
 
-  reversed() {
+  NiceList.prototype.reversed = function () {
     var head = null;
     var cursor = this.head;
     while (cursor) {
@@ -99,8 +100,9 @@ class NiceList {
       cursor = cursor.next;
     }
     return new NiceList(head);
-  }
-}
+  };
+  return NiceList;
+})();
 
 var some = NiceList.generate();
 console.log(some.to_string());
