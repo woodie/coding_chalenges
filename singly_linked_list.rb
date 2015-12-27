@@ -95,16 +95,6 @@ class NodeList
     end
     NodeList.new(head)
   end
-
-  def clone
-    head = self.head.clone
-    cursor = head
-    while cursor
-      cursor.next = cursor.next.clone unless cursor.next.nil?
-      cursor = cursor.next
-    end
-    NodeList.new(head)
-  end
 end
 
 some = NodeList.generate

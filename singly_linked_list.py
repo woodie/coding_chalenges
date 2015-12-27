@@ -77,10 +77,6 @@ class NodeList:
       cursor = cursor.next
     return NodeList(head)
 
-  def clone(self):
-    import copy
-    return copy.deepcopy(self)
-
 some = NodeList.generate()
 print some.to_string()
 some.reverse()
