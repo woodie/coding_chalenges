@@ -16,8 +16,8 @@ class NodeList
     self.head = head
   end
 
-  # [a]→ [b]→ [c]→ [d]→ [e]→ [f]→ [g]→ [h]→ [i]→ [j]
-  def self.generate(start=:a, finish=:j)
+  # [a]→ [b]→ [c]→ [d]→ [e]→ x
+  def self.generate(start=:a, finish=:e)
     this_node = nil
       (start..finish).to_a.reverse.each do |i|
       this_node = ListNode.new i, this_node
@@ -25,9 +25,8 @@ class NodeList
     new this_node
   end
 
-  # [a]→ [b]→ [c]→ [d]→ [e]→ [f]→ [g]→ [h]→ [i]→ [j]
-  # !!! WARNING !!!            ↖_________________/
-  def loop_back!(value=:f)
+  # [a]→ [b]→ [c]→ [d]→ [e]→ [c]→ ...
+  def loop_back!(value=:c)
     target = nil
     cursor = self.head
     while cursor.next
@@ -95,20 +94,75 @@ class NodeList
     end
     NodeList.new(head)
   end
+
+  def join(other, offset=0)
+    return false if self.has_cycle?
+    last = self.head
+    while last.next
+      last = last.next
+    end
+    offset.times do
+      other.head = other.head.next
+    end
+    last.next = other.head
+    true
+  end
+
+  def palindromal?
+    slow = self.head
+    fast = self.head
+    return true if slow.next == nil or slow.next == slow
+    count = 0
+    while fast and fast.next and fast.next.next
+      slow = slow.next
+      fast = fast.next.next
+      count +=1
+      return false if slow == fast # cycles
+    end
+    count +=1 if fast.next # correct for even number
+    while slow.next
+      count -=1
+      fast = self.head
+      count.times do
+        fast = fast.next
+      end
+      slow = slow.next
+      return false if fast.value != slow.value
+    end
+    true
+  end
 end
 
-some = NodeList.generate
-puts some.to_string
-some.reverse!
-puts some.to_string
-last = some.reversed
-puts last.to_string
-some.loop_back!
-puts some.to_string
+deep = NodeList.generate('a', 'j')
+puts deep.to_string
+deep.reverse!
+puts deep.to_string
+last = NodeList.generate
+one = last.reversed
+two = last.reversed
+bad = last.reversed
+one.join last
+two.join last, 1
+bad.join last, 2
+puts one.to_string
+puts "palindromal: #{one.palindromal?}"
+puts two.to_string
+puts "palindromal: #{two.palindromal?}"
+puts bad.to_string
+puts "palindromal: #{bad.palindromal?}"
+bad.loop_back!
+puts bad.to_string
+puts "palindromal: #{bad.palindromal?}"
 
 __END__
 
 [a]→ [b]→ [c]→ [d]→ [e]→ [f]→ [g]→ [h]→ [i]→ [j]→ x
 [j]→ [i]→ [h]→ [g]→ [f]→ [e]→ [d]→ [c]→ [b]→ [a]→ x
-[a]→ [b]→ [c]→ [d]→ [e]→ [f]→ [g]→ [h]→ [i]→ [j]→ x
-[j]→ [i]→ [h]→ [g]→ [f]→ [e]→ [d]→ [c]→ [b]→ [a]→ [f]→ ...
+[e]→ [d]→ [c]→ [b]→ [a]→ [a]→ [b]→ [c]→ [d]→ [e]→ x
+palindromal: true
+[e]→ [d]→ [c]→ [b]→ [a]→ [b]→ [c]→ [d]→ [e]→ x
+palindromal: true
+[e]→ [d]→ [c]→ [b]→ [a]→ [d]→ [e]→ x
+palindromal: false
+[e]→ [d]→ [c]→ [b]→ [a]→ [d]→ [e]→ [c]→ ...
+palindromal: false
