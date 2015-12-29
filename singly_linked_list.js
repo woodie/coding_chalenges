@@ -79,6 +79,36 @@ var NiceList = (function () {
     return memo += `[${pointer.value}]→ x`;
   };
 
+  NiceList.prototype.find_node = function (value) {
+    var cursor = this.head;
+    while (cursor) {
+      if (cursor.value === value) {
+        return cursor;
+      }
+      cursor = cursor.next;
+    }
+    return null;
+  };
+
+  NiceList.prototype.delete_node = function (node) {
+    if (node.next) {
+      var value = node.value
+      node.value = node.next.value;
+      node.next = node.next.next;
+      return value;
+    } else {
+      var cursor = this.head;
+      while (cursor) {
+        if (cursor.next === node) {
+          cursor.next = cursor.next.next;
+          return node.value;
+        }
+        cursor = cursor.next;
+      }
+    }
+    return null;
+  };
+
   NiceList.prototype.reverse = function () {
     var tail = this.head;
     while (tail.next) {
@@ -153,6 +183,11 @@ var NiceList = (function () {
 
 var deep = NiceList.generate('a', 'j');
 console.log(deep.to_string());
+console.log("delete: " +
+    deep.delete_node(deep.find_node('e')) +  ", " +
+    deep.delete_node(deep.find_node('j')));
+console.log(deep.to_string());
+console.log('reverse:');
 deep.reverse();
 console.log(deep.to_string());
 var last = NiceList.generate();
@@ -162,27 +197,30 @@ var bad = last.reversed();
 one.join(last);
 two.join(last, 1);
 bad.join(last, 2);
-console.log(one.to_string());
 console.log('palindromal: ', one.palindromal());
-console.log(two.to_string());
+console.log(one.to_string());
 console.log('palindromal: ', two.palindromal());
-console.log(bad.to_string());
+console.log(two.to_string());
 console.log('palindromal;', bad.palindromal());
+console.log(bad.to_string());
 bad.loop_back();
-console.log(bad.to_string());
 console.log('palindromal;', bad.palindromal());
+console.log(bad.to_string());
 
 /*
 
 [a]→ [b]→ [c]→ [d]→ [e]→ [f]→ [g]→ [h]→ [i]→ [j]→ x
-[j]→ [i]→ [h]→ [g]→ [f]→ [e]→ [d]→ [c]→ [b]→ [a]→ x
+delete: e, j
+[a]→ [b]→ [c]→ [d]→ [f]→ [g]→ [h]→ [i]→ x
+reverse:
+[i]→ [h]→ [g]→ [f]→ [d]→ [c]→ [b]→ [a]→ x
+palindromal:  true
 [e]→ [d]→ [c]→ [b]→ [a]→ [a]→ [b]→ [c]→ [d]→ [e]→ x
 palindromal:  true
 [e]→ [d]→ [c]→ [b]→ [a]→ [b]→ [c]→ [d]→ [e]→ x
-palindromal:  true
+palindromal; false
 [e]→ [d]→ [c]→ [b]→ [a]→ [d]→ [e]→ x
 palindromal; false
 [e]→ [d]→ [c]→ [b]→ [a]→ [d]→ [e]→ [c]→ ...
-palindromal; false
 
 */
