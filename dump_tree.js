@@ -28,7 +28,7 @@ var Tree = (function () {
     }
     return memo;
   };
-  Tree.print_tree = function(node) {
+  Tree.print_tree = function (node) {
     process.stdout.write(node.value + ": ");
     for (let sub of node.children) {
       Tree.print_tree(sub);
