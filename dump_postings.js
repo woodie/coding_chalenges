@@ -41,6 +41,7 @@ var PostingsListNode = (function () {
       }
     }
   };
+
   return PostingsListNode;
 })();
 

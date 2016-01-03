@@ -178,6 +178,7 @@ var NiceList = (function () {
     }
     return true;
   };
+
   return NiceList;
 })();
 
