@@ -3,9 +3,9 @@
 class ListNode
   attr_accessor :value, :next
 
-  def initialize(value, next_node=nil)
+  def initialize(value, nxxt=nil)
     self.value = value
-    self.next = next_node
+    self.next = nxxt
   end
 end
 

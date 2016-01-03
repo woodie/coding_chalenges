@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 class ListNode:
-  def __init__(self, value, next_node=None):
+  def __init__(self, value, nxxt=None):
     self.value = value
-    self.next = next_node
+    self.next = nxxt
 
 class NodeList:
   def __init__(self, head):
