@@ -21,7 +21,7 @@ var PostingsListNode = (function () {
   PostingsListNode.set_jump_order_recursive = function (node, order) {
     order = order || 0;
     if (node && node.order === -1) {
-      node.order = order++;
+      node.order = ++order;
       PostingsListNode.set_jump_order_recursive(node.jump, order);
       PostingsListNode.set_jump_order_recursive(node.next, order);
     }
@@ -35,7 +35,7 @@ var PostingsListNode = (function () {
       var node = stack[stack.length - 1];
       stack.pop();
       if (node && node.order === -1) {
-        node.order = order++;
+        node.order = ++order;
         stack.push(node.next);
         stack.push(node.jump);
       }
@@ -68,7 +68,7 @@ console.log(e2.to_string());
 
 /*
 
-[a:0]→ [b:2]→ [c:1]→ [d:3]→ x
-[a:0]→ [b:2]→ [c:1]→ [d:3]→ x
+[a:1]→ [b:3]→ [c:2]→ [d:4]→ x
+[a:1]→ [b:3]→ [c:2]→ [d:4]→ x
 
 */
