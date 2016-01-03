@@ -8,11 +8,10 @@ class PostingsListNode:
     self.next = nxxt
     self.jump = jump
 
-  @classmethod
-  def to_string(self, node):
-    memo = "[%s:%d]→ " % (node.label, node.order)
-    if node.next:
-      memo += self.to_string(node.next)
+  def to_string(self):
+    memo = "[%s:%d]→ " % (self.label, self.order)
+    if self.next:
+      memo += self.next.to_string()
     else:
       memo += 'x'
     return memo
@@ -55,10 +54,10 @@ def example_list():
 
 e1 = example_list()
 PostingsListNode.set_jump_order_recursive(e1)
-print  PostingsListNode.to_string(e1)
+print e1.to_string()
 e2 = example_list()
 PostingsListNode.set_jump_order_iterative(e2)
-print  PostingsListNode.to_string(e2)
+print e2.to_string()
 
 """
 
