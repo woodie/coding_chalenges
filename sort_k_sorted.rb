@@ -28,3 +28,8 @@ input = [3,-1,2,6,4,5,8,7,9]
 
 puts input.pq_sort(1).join(',')
 puts input.sort.join(',')
+
+__END__
+
+-1,2,3,4,5,6,7,8,9
+-1,2,3,4,5,6,7,8,9

@@ -23,3 +23,10 @@ input = [3,-1,2,6,4,5,8,7,9]
 
 print ",".join(map(str, pq_sort(input, 1)))
 print ",".join(map(str, sorted(input)))
+
+"""
+
+-1,2,3,4,5,6,7,8,9
+-1,2,3,4,5,6,7,8,9
+
+"""
