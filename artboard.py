@@ -33,7 +33,7 @@ def coordinates_smart(img):
 def plot_rect_on_board(x, y, w, h):
   height = (y + h) if (y + h) > SIZE else SIZE
   width = (x + w) if (x + w) > SIZE else SIZE
-  board = [[]] * height
+  board = [None] * height
   for r, row in enumerate(board):
     board[r] = [0] * width
   for one in range(y, y + h):
