@@ -8,11 +8,11 @@ class FlowerPlanter:
   def __init__(self, plots):
     self.plots = plots
   def plant(self):
-    x = len(self.plots)
-    for i in range(x):
+    tot = len(self.plots)
+    for i in range(tot):
       if (self.plots[i] == 0 and
           (i == 0 or self.plots[i - 1] != 1) and
-          (i == x - 1 or self.plots[i + 1] != 1)):
+          (i == tot - 1 or self.plots[i + 1] != 1)):
         self.plots[i] = 1
     print ','.join(str(x) for x in self.plots)
 
