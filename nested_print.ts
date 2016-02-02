@@ -35,13 +35,12 @@ function nicePrint(hash: {}, list?: Array<Elem>, level?: number) {
 }
 
 var arr = [];
-var p = [0,0,0,0,1,1,1,2,2,2,3,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
-for (let i = 1; i < 27; i++) {
-  arr.push(new Elem(i, String.fromCharCode(i + 64), p[i]));
+var pid = [0,0,0,0,1,1,1,2,2,2,3,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
+for (let i = 1, len = pid.length; i < len; i++) {
+  arr.push(new Elem(i, String.fromCharCode(i + 64), pid[i]));
 }
 
 nicePrint(getNodes(arr));
-
 
 /*
 
