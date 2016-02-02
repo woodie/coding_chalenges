@@ -18,9 +18,9 @@ def nice_print(hash, list=nil, level=0)
 end
 
 arr = []
-p = [0,0,0,0,1,1,1,2,2,2,3,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10]
-1.upto(26) do |i|
-  arr << {parent_id: p[i], id: i, value: (i + 64).chr}
+pid = [0,0,0,0,1,1,1,2,2,2,3,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10]
+1.upto(pid.length - 1) do |i|
+  arr << {parent_id: pid[i], id: i, value: (i + 64).chr}
 end
 
 nice_print get_nodes(arr)

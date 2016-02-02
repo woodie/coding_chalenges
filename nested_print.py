@@ -16,9 +16,9 @@ def nice_print(mash, items=None, level=0):
     nice_print(mash, children, level + 1)
 
 arr = []
-p = [0,0,0,0,1,1,1,2,2,2,3,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10]
-for i in range(1, 27):
-  arr.append({'parent_id': p[i], 'id': i, 'value': chr(i + 64)})
+pid = [0,0,0,0,1,1,1,2,2,2,3,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10]
+for i in range(1, len(pid)):
+  arr.append({'parent_id': pid[i], 'id': i, 'value': chr(i + 64)})
 
 nice_print(get_nodes(arr))
 
