@@ -2,7 +2,7 @@
 
 class Iterator
   def initialize(node)
-    @stack = [node];
+    @stack = [node]
   end
 
   def next
@@ -27,7 +27,7 @@ class Node
 
   def initialize(value, children=[])
     self.value = value
-    self.children = children.is_a?(Array) ? children : [children]
+    self.children = children
   end
 end
 
@@ -70,7 +70,7 @@ end
 
 root = Node.new("ab", [Node.new("ef", [
     Node.new("x"), Node.new("y"), Node.new("z")]),
-    Node.new("gh", Node.new("p"))])
+    Node.new("gh", [Node.new("p")])])
 
 Tree.print_tree(root)
 puts

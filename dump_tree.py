@@ -19,7 +19,7 @@ class Iterator:
 class Node:
   def __init__(self, value, children=[]):
     self.value = value
-    self.children = children if (type(children) is list) else [children]
+    self.children = children
 
 class Tree:
   def __init__(self, root):
@@ -52,7 +52,7 @@ class Tree:
 
 root = Node("ab", [Node("ef", [
     Node("x"), Node("y"), Node("z")]),
-    Node("gh", Node("p"))])
+    Node("gh", [Node("p")])])
 
 Tree.print_tree(root)
 print
