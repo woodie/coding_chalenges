@@ -1,10 +1,9 @@
 #!/usr/bin/env typescript
 
 class Iterator {
-  stack: [];
+  stack: Array<TreeNode>;
   constructor(node: TreeNode) {
-    this.stack = [];
-    this.stack.push(node);
+    this.stack = [node];
   }
   next() {
     if (this.hasNext()) {
