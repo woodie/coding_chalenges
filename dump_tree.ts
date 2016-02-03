@@ -1,5 +1,27 @@
 #!/usr/bin/env typescript
 
+class Iterator {
+  stack: [];
+  constructor(node: TreeNode) {
+    this.stack = [];
+    this.stack.push(node);
+  }
+  next() {
+    if (this.hasNext() === false) {
+      return null;
+    } else {
+      var node = this.stack.pop();
+      for (let child of node.children) {
+        this.stack.unshift(child);
+      }
+      return node;
+    }
+  }
+  hasNext() {
+    return (this.stack.length !== 0);
+  }
+}
+
 class TreeNode {
   value: string;
   children: Array<TreeNode>;
@@ -53,11 +75,18 @@ console.log(tree.to_s());
 tree.print();
 console.log('');
 
+var iter = new Iterator(root);
+while(iter.hasNext()) {
+  process.stdout.write(iter.next().value + ": ");
+}
+console.log('');
+
 /*
 
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
+ab: ef: gh: x: y: z: p: // TODO
 
 */
