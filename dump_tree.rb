@@ -1,5 +1,27 @@
 #!/usr/bin/env ruby
 
+class Iterator
+  def initialize(node)
+    @stack = [node];
+  end
+
+  def next
+    if has_next
+      node = @stack.pop
+      node.children.reverse.each do |child|
+        @stack.push child
+      end
+      node
+    else
+      nil
+    end
+  end
+
+  def has_next
+    !@stack.empty?
+  end
+end
+
 class Node
   attr_accessor :value, :children
 
@@ -58,8 +80,15 @@ tree.print
 puts
 puts tree.to_s
 
+iter = Iterator.new(root)
+while(iter.has_next)
+  print iter.next.value + ": "
+end
+puts
+
 __END__
 
+ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
