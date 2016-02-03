@@ -2,6 +2,27 @@
 
 "use strict";
 
+var Iterator = (function () {
+  function Iterator(node) {
+    this.stack = [node];
+  }
+  Iterator.prototype.next = function () {
+    if (this.hasNext()) {
+      var node = this.stack.pop();
+      for (let child of node.children.reverse()) {
+        this.stack.push(child);
+      }
+      return node;
+    } else {
+      return null;
+    }
+  }
+  Iterator.prototype.hasNext = function () {
+    return (this.stack.length !== 0);
+  }
+  return Iterator;
+})();
+
 var Node = (function () {
   function Node(value, children) {
     this.value = value;
@@ -55,8 +76,15 @@ console.log(tree.to_s());
 tree.print();
 console.log('');
 
+var iter = new Iterator(root);
+while(iter.hasNext()) {
+  process.stdout.write(iter.next().value + ": ");
+}
+console.log('');
+
 /*
 
+ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
