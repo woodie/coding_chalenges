@@ -7,14 +7,14 @@ class Iterator {
     this.stack.push(node);
   }
   next() {
-    if (this.hasNext() === false) {
-      return null;
-    } else {
+    if (this.hasNext()) {
       var node = this.stack.pop();
-      for (let child of node.children) {
-        this.stack.unshift(child);
+      for (let child of node.children.reverse()) {
+        this.stack.push(child);
       }
       return node;
+    } else {
+      return null;
     }
   }
   hasNext() {
@@ -87,6 +87,6 @@ ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
 ab: ef: x: y: z: gh: p:
-ab: ef: gh: x: y: z: p: // TODO
+ab: ef: x: y: z: gh: p:
 
 */
