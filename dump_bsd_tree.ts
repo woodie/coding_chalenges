@@ -1,5 +1,35 @@
 #!/usr/bin/env typescript
 
+class Iterator {
+  stack: Array<BSTnode>;
+  constructor(node: BSTnode) {
+    this.stack = [];
+    while(node) {
+      this.stack.push(node);
+      node = node.left;
+    }
+  }
+  next() {
+    if (this.hasNext()) {
+      var node = this.stack.pop();
+      var current = node;
+      if (node.right) {
+        node = node.right;
+        while(node) {
+          this.stack.push(node);
+          node = node.left;
+        }
+      }
+      return current;
+    } else {
+      return null;
+    }
+  }
+  hasNext() {
+    return (this.stack.length > 0);
+  }
+}
+
 class BSTnode {
   value: number;
   left: BSTnode;
@@ -67,8 +97,15 @@ sorted_use_stack(_19);
 sorted_recursive(_19);
 console.log();
 
+var iter = new Iterator(_19);
+while(iter.hasNext()) {
+  process.stdout.write(iter.next().value + ": ");
+}
+console.log('');
+
 /*
 
+2: 3: 5: 7: 11: 13: 17: 19: 23: 29: 37: 43: 47: 53:
 2: 3: 5: 7: 11: 13: 17: 19: 23: 29: 37: 43: 47: 53:
 2: 3: 5: 7: 11: 13: 17: 19: 23: 29: 37: 43: 47: 53:
 
