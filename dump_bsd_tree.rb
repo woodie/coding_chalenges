@@ -1,5 +1,36 @@
 #!/usr/bin/env ruby
 
+class Iterator
+  def initialize(node)
+    @stack = []
+    while(node)
+      @stack.push(node)
+      node = node.left
+    end
+  end
+
+  def next
+    if has_next?
+      node = @stack.pop
+      current = node
+      if node.right
+        node = node.right
+        while (node)
+          @stack.push(node)
+          node = node.left
+        end
+      end
+      current
+    else
+      nil
+    end
+  end
+
+  def has_next?
+    !@stack.empty?
+  end
+end
+
 class BSTnode
   attr_accessor :value, :left, :right
   def initialize(value, left=nil, right=nil)
@@ -59,6 +90,12 @@ end
 
 sorted_use_stack _19
 sorted_recursive _19
+puts
+
+iter = Iterator.new(_19)
+while iter.has_next?
+  print "#{iter.next.value}: "
+end
 puts
 
 __END__
