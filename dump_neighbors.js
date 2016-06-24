@@ -12,16 +12,20 @@ var NeighborNode = (function () {
 
   NeighborNode.getNeighborhood = function (node, depth) {
     if (depth === undefined) { depth = 0; }
-    // zero depth must return an empty collection
-    if (depth < 1) { return []; }
     var neighborhood = {};
-    // populate neighborhood with node's neighbors
-    for (var z of node.neighbors) { neighborhood[z.label] = z }
-    // and collect [depth -1] neighbors
-    for (var i=1; i < depth; i++) {
-      for (var k in neighborhood) {
-        var n = neighborhood[k];
-        for (var z of n.neighbors) { neighborhood[z.label] = z }
+    var queue = node.neighbors;
+    for (var i=0; i < depth; i++) {
+      for (var x of queue) {
+        neighborhood[x.label] = x;
+      }
+      queue = [];
+      for (var s in neighborhood) {
+        var sub = neighborhood[s];
+        for (var z of sub.neighbors) {
+            if (!(z.label in neighborhood)) {
+            queue.push(z);
+          }
+        }
       }
     }
     var out = [];
@@ -31,12 +35,12 @@ var NeighborNode = (function () {
 
   NeighborNode.prototype.printNeighborhood = function (depth) {
     var objs = NeighborNode.getNeighborhood(this, depth);
-    console.log(`${this.label},${depth} → [${objs.map(function(z) {return z.label}).join(',')}]`);
+    console.log(`${this.label},${depth} → [${objs.map(function(z) {return z.label}).join(', ')}]`);
   };
   
   NeighborNode.printNodelist = function (nodes) {
     for (var n of nodes) {
-      console.log(`${n.label} → [${n.neighbors.map(function(z) {return z.label}).join(',')}]`);
+      console.log(`${n.label} → [${n.neighbors.map(function(z) {return z.label}).join(', ')}]`);
     }
   };
 

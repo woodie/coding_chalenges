@@ -13,22 +13,20 @@ class NeighborNode
   #    4-5-6  (1,2)→ [1,2,3,4,5] • results should be unique
 
   def self.get_neighborhood(node, depth=0)
-    # zero depth must return an empty collection
-    return [] if depth < 1
     neighborhood = {}
-    # populate neighborhood with node's neighbors
-    node.neighbors.each {|z| neighborhood[z.label] = z}
-    # and collect [depth -1] neighbors
-    (depth - 1).times do 
-      neighborhood.values.each do |n|
-        n.neighbors.each do |z|
-          neighborhood[z.label] = z unless neighborhood.has_key? z.label
+    queue = node.neighbors
+    depth.times do 
+      queue.each {|z| neighborhood[z.label] = z}
+      queue = []
+      neighborhood.values.each do |sub|
+        sub.neighbors.each do |z|
+          queue << z unless neighborhood.has_key? z.label
         end
       end
     end
     neighborhood.values.sort_by {|e| e.label}
   end
-  
+
   def print_neighborhood(depth)
     puts "#{self.label},#{depth} → #{
         NeighborNode.get_neighborhood(self, depth).map(&:label).inspect}"

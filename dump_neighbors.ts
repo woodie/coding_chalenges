@@ -14,16 +14,20 @@ class NeighborNode {
   //    4-5-6  (1,2)→ [1,2,3,4,5] • results should be unique
 
   static getNeighborhood(node, depth=0) {
-    // zero depth must return an empty collection
-    if (depth < 1) { return []; }
     var neighborhood = {};
-    // populate neighborhood with node's neighbors
-    for (let z of node.neighbors) { neighborhood[z.label] = z }
-    // and collect [depth -1] neighbors
-    for (var i=1; i < depth; i++) {
+    var queue = node.neighbors;
+    for (let i=0; i < depth; i++) {
+      for (let z of queue) {
+        neighborhood[z.label] = z;
+      }
+      queue = [];
       for (let k in neighborhood) {
-        let n = neighborhood[k];
-        for (let z of n.neighbors) { neighborhood[z.label] = z }
+        let sub = neighborhood[k];
+        for (let z of sub.neighbors) {
+            if (!(z.label in neighborhood)) {
+            queue.push(z);
+          }
+        }
       }
     }
     var out = [];
@@ -33,12 +37,12 @@ class NeighborNode {
 
   printNeighborhood(depth) {
     var objs = NeighborNode.getNeighborhood(this, depth);
-    console.log(`${this.label},${depth} → [${objs.map(function(z) {return z.label}).join(',')}]`);
+    console.log(`${this.label},${depth} → [${objs.map(function(z) {return z.label}).join(', ')}]`);
   }
   
   static printNodelist(nodes) {
     for (let n of nodes) {
-      console.log(`${n.label} → [${n.neighbors.map(function(z) {return z.label}).join(',')}]`);
+      console.log(`${n.label} → [${n.neighbors.map(function(z) {return z.label}).join(', ')}]`);
     }
   }
 }
