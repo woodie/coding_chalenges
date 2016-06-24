@@ -20,8 +20,7 @@ var NeighborNode = (function () {
       }
       queue = [];
       for (var s in neighborhood) {
-        var sub = neighborhood[s];
-        for (var z of sub.neighbors) {
+        for (var z of neighborhood[s].neighbors) {
             if (!(z.label in neighborhood)) {
             queue.push(z);
           }

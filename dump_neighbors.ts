@@ -22,8 +22,7 @@ class NeighborNode {
       }
       queue = [];
       for (let k in neighborhood) {
-        let sub = neighborhood[k];
-        for (let z of sub.neighbors) {
+        for (let z of neighborhood[k].neighbors) {
             if (!(z.label in neighborhood)) {
             queue.push(z);
           }

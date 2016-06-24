@@ -18,8 +18,8 @@ class NeighborNode
     depth.times do 
       queue.each {|z| neighborhood[z.label] = z}
       queue = []
-      neighborhood.values.each do |sub|
-        sub.neighbors.each do |z|
+      neighborhood.values.each do |s|
+        s.neighbors.each do |z|
           queue << z unless neighborhood.has_key? z.label
         end
       end
