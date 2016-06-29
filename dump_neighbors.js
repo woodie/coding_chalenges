@@ -27,9 +27,7 @@ var NeighborNode = (function () {
         }
       }
     }
-    var out = [];
-    for (var k in neighborhood) { out.push(neighborhood[k]); }
-    return out;
+    return Object.keys(neighborhood).map(function(k) { return neighborhood[k]; });
   };
 
   NeighborNode.prototype.printNeighborhood = function (depth) {
