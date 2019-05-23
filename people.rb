@@ -39,5 +39,13 @@ end
 e = People.new('people.csv')
 puts e.with_id(2)
 puts e.with_name('Jane Doe')
-puts e.with_name('John Doe') # NOT_FOUND
-puts e.with_value(40) # John Smith, Biff Henderson
+puts e.with_name('John Doe')
+puts e.with_value(40)
+
+__END__
+
+{:id=>"2", :name=>"Paul Jons", :value=>"30"}
+{:id=>"1", :name=>"Jane Doe", :value=>"50"}
+<Not Found>
+{:id=>"0", :name=>"John Smith", :value=>"40"}
+{:id=>"5", :name=>"Biff Henderson", :value=>"40"}
