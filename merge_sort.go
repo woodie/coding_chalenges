@@ -15,11 +15,9 @@ func merge(left, right []int) (result []int) {
   result = []int{}
   for len(left) > 0 && len(right) > 0 {
     if left[0] < right[0] {
-      result = append(result, left[0])
-      left = left[1:]
+      result, left = append(result, left[0]), left[1:]
     } else {
-      result = append(result, right[0])
-      right = right[1:]
+      result, right = append(result, right[0]), right[1:]
     }
   }
   return append(result, append(left, right...)...)
