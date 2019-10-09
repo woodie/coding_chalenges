@@ -11,8 +11,8 @@ func mergeSort(items []int) []int {
   }
 }
 
-func merge(left, right []int) (result []int) {
-  result = []int{}
+func merge(left, right []int) []int {
+  result := []int{}
   for len(left) > 0 && len(right) > 0 {
     if left[0] < right[0] {
       result, left = append(result, left[0]), left[1:]
