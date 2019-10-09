@@ -1,6 +1,9 @@
 package main
 
-import ("fmt")
+import (
+  "fmt"
+  "strings"
+)
 
 func mergeSort(items []int) []int {
   if len(items) <= 1 {
@@ -24,13 +27,13 @@ func merge(left, right []int) []int {
 }
 
 func main() {
-  slice := []int{9, 4, 8, 2, 7, 1, 6, 4, 0, 5, 9, 3, 8, 2, 6, 3, 5, 8, 2, 7, 3, 9, 4, 0, 5}
-  fmt.Println("unsorted: ", slice)
-  fmt.Println("sorted:   ", mergeSort(slice))
+  data := []int{9,4,8,2,7,1,6,4,0,5,9,3,8,2,6,3,5,8,2,7,3,9,4,0,5}
+  fmt.Println("unsorted:", strings.Trim(strings.Join(strings.Split(fmt.Sprint(data), " "), ","), "[]"))
+  fmt.Println("sorted:  ", strings.Trim(strings.Join(strings.Split(fmt.Sprint(mergeSort(data)), " "), ","), "[]"))
 }
 
 /*
 go run merge_sort.go 
-unsorted:  [9 4 8 2 7 1 6 4 0 5 9 3 8 2 6 3 5 8 2 7 3 9 4 0 5]
-sorted:    [0 0 1 2 2 2 3 3 3 4 4 4 5 5 5 6 6 7 7 8 8 8 9 9 9]
+unsorted: 9,4,8,2,7,1,6,4,0,5,9,3,8,2,6,3,5,8,2,7,3,9,4,0,5
+sorted:   0,0,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,7,7,8,8,8,9,9,9
 */
