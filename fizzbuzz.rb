@@ -4,11 +4,10 @@
   out = ''
   out << 'Fizz' if i % 3 == 0
   out << 'Buzz' if i % 5 == 0
-  puts out == '' ? i.to_s : out
+  puts out.empty? ? i : out
 end
 
 __END__
-
 1
 2
 Fizz
