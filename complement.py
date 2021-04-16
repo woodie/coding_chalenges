@@ -11,6 +11,6 @@ def complementary_pair(target, data):
       if memo[num] == idx: continue
       return "%s + %s = %s at [%s,%s] of %s" % (com, num, target, memo[num], idx, data)
 
-print(complementary_pair(8, [4, 3, 9, 2, 5, 7, 2, 6]))
+print(complementary_pair(8, [4,3,9,2,5,7,2,6]))
 
 # 3 + 5 = 8 at [1,4] of [4, 3, 9, 2, 5, 7, 2, 6]

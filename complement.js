@@ -6,7 +6,7 @@ function complementary_pair(target, data) {
   for (var idx = 0; idx < data.length; idx++) {
     let num = data[idx];
     if (num >= target) continue;
-    com = target - num;
+    let com = target - num;
     memo[com] = idx;
     if(memo.hasOwnProperty(num)) {
       if (memo[num] == idx) continue;
@@ -15,7 +15,7 @@ function complementary_pair(target, data) {
   }
 }
 
-console.log(complementary_pair(8, [4, 3, 9, 2, 5, 7, 2, 6]));
+console.log(complementary_pair(8, [4,3,9,2,5,7,2,6]));
 
 // 3 + 5 = 8 at [1,4] of [4,3,9,2,5,7,2,6]
 

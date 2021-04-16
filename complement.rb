@@ -14,6 +14,6 @@ def complementary_pair(target, data)
   end
 end
 
-puts complementary_pair 8, [4, 3, 9, 2, 5, 7, 2, 6]
+puts complementary_pair 8, [4,3,9,2,5,7,2,6]
 
 # 3 + 5 = 8 at [1,4] of [4, 3, 9, 2, 5, 7, 2, 6]
