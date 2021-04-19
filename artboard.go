@@ -68,13 +68,14 @@ func render_entire_artboard(img [SIZE][SIZE]int) {
   buffer.WriteString("\n   ")
   for n := 0; n < len(img[0]); n++ {
     buffer.WriteString(" ")
-    buffer.WriteString(strconv.Itoa(n))
+    buffer.WriteString(strconv.Itoa(n % 10))
   }
   buffer.WriteString("\n")
   for r := 0; r < len(img[0]); r++ {
     var row [SIZE]int
     row = img[r]
-    buffer.WriteString("  ")
+    if r < 100 { buffer.WriteString(" ") }
+    if r < 10 { buffer.WriteString(" ") }
     buffer.WriteString(strconv.Itoa(r))
     for c := 0; c < len(row); c++ {
       var pix int
