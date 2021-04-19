@@ -11,10 +11,8 @@ const SIZE = 10
 func coordinates_naive(img [SIZE][SIZE]int) string {
   var x, y, w, h int
   for r := 0; r < len(img); r++ {
-    var row [SIZE]int
-    row = img[r]
-    for c := 0; c < len(row); c++ {
-      if row[c] == 1 {
+    for c := 0; c < SIZE; c++ {
+      if img[r][c] == 1 {
         if x == 0 { x = c }
         if y == 0 { y = r }
         w = c - x + 1
@@ -27,15 +25,13 @@ func coordinates_naive(img [SIZE][SIZE]int) string {
 
 func coordinates_smart(img [SIZE][SIZE]int) string {
   var x, y, w, h int
-  for r := 0; r < len(img); r++ {
-    var row [SIZE]int
-    row = img[r]
-    if indexOf(row, 1) != -1 {
-      for c := 0; c < len(row); c++ {
-        if row[c] == 1 {
+  for r := 0; r < SIZE; r++ {
+    if indexOf(img[r], 1) != -1 {
+      for c := 0; c < SIZE; c++ {
+        if img[r][c] == 1 {
           x = c
           y = r
-          w = lastIndexOf(row, 1) - x + 1
+          w = lastIndexOf(img[r], 1) - x + 1
           for z := y; z < len(img) + 1; z++ {
             if z == len(img) || indexOf(img[z], 1) == -1 {
               h = z - r
@@ -72,15 +68,11 @@ func render_entire_artboard(img [SIZE][SIZE]int) {
   }
   buffer.WriteString("\n")
   for r := 0; r < len(img[0]); r++ {
-    var row [SIZE]int
-    row = img[r]
     if r < 100 { buffer.WriteString(" ") }
     if r < 10 { buffer.WriteString(" ") }
     buffer.WriteString(strconv.Itoa(r))
-    for c := 0; c < len(row); c++ {
-      var pix int
-      pix = row[c]
-      if (pix != 1) {
+    for c := 0; c < SIZE; c++ {
+      if (img[r][c] != 1) {
         buffer.WriteString(" .")
       } else {
         buffer.WriteString(" X")
