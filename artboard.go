@@ -10,7 +10,7 @@ const SIZE = 10
 
 func coordinates_naive(img [SIZE][SIZE]int) string {
   var x, y, w, h int
-  for r := 0; r < len(img); r++ {
+  for r := 0; r < SIZE; r++ {
     for c := 0; c < SIZE; c++ {
       if img[r][c] == 1 {
         if x == 0 { x = c }
@@ -26,17 +26,17 @@ func coordinates_naive(img [SIZE][SIZE]int) string {
 func coordinates_smart(img [SIZE][SIZE]int) string {
   var x, y, w, h int
   for r := 0; r < SIZE; r++ {
-    if indexOf(img[r], 1) != -1 {
-      for c := 0; c < SIZE; c++ {
-        if img[r][c] == 1 {
-          x = c
-          y = r
-          w = lastIndexOf(img[r], 1) - x + 1
-          for z := y; z < len(img) + 1; z++ {
-            if z == len(img) || indexOf(img[z], 1) == -1 {
-              h = z - r
-              return fmt.Sprintf("{ x:%d, y:%d, w:%d, h:%d }", x, y, w, h)
-            }
+    if indexOf(img[r], 1) == -1 { continue }
+
+    for c := 0; c < SIZE; c++ {
+      if img[r][c] == 1 {
+        x = c
+        y = r
+        w = lastIndexOf(img[r], 1) - x + 1
+        for z := y; z < SIZE + 1; z++ {
+          if z == SIZE || indexOf(img[z], 1) == -1 {
+            h = z - r
+            return fmt.Sprintf("{ x:%d, y:%d, w:%d, h:%d }", x, y, w, h)
           }
         }
       }
@@ -62,12 +62,12 @@ func plot_rect_on_board(x int, y int, w int, h int) [SIZE][SIZE]int {
 func render_entire_artboard(img [SIZE][SIZE]int) {
   var buffer bytes.Buffer
   buffer.WriteString("\n   ")
-  for n := 0; n < len(img[0]); n++ {
+  for n := 0; n < SIZE; n++ {
     buffer.WriteString(" ")
     buffer.WriteString(strconv.Itoa(n % 10))
   }
   buffer.WriteString("\n")
-  for r := 0; r < len(img[0]); r++ {
+  for r := 0; r < SIZE; r++ {
     if r < 100 { buffer.WriteString(" ") }
     if r < 10 { buffer.WriteString(" ") }
     buffer.WriteString(strconv.Itoa(r))

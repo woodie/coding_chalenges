@@ -26,18 +26,18 @@ function coordinates_naive(img) {
 function coordinates_smart(img) {
   for (var r = 0; r < img.length; r++) {
     var row = img[r];
-    if (row.indexOf(1) !== -1) {
-      for (var c = 0; c < row.length; c++) {
-        var pix = row[c];
-        if (pix === 1) {
-          var x = c;
-          var y = r;
-          var w = row.lastIndexOf(1) - x + 1;
-          for (var z = y; z < img.length + 1; z++) {
-            if (z === img.length || (img[z].indexOf(1) == -1)) {
-              var h = z - r;
-              return {x:x, y:y, w:w, h:h};
-            }
+    if (row.indexOf(1) === -1) continue;
+
+    for (var c = 0; c < row.length; c++) {
+      var pix = row[c];
+      if (pix === 1) {
+        var x = c;
+        var y = r;
+        var w = row.lastIndexOf(1) - x + 1;
+        for (var z = y; z < img.length + 1; z++) {
+          if (z === img.length || (img[z].indexOf(1) == -1)) {
+            var h = z - r;
+            return {x:x, y:y, w:w, h:h};
           }
         }
       }

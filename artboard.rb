@@ -20,6 +20,7 @@ end
 def coordinates_smart(img)
   img.each_with_index do |row,r|
     next unless row.include?(1)
+
     row.each_with_index do |pix,c|
       if pix == 1
         x = c

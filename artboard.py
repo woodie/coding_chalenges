@@ -19,6 +19,7 @@ def coordinates_smart(img):
   for r, row in enumerate(img):
     if (1 not in row):
       continue
+
     for c, pix in enumerate(row):
       if (pix == 1):
         x = c
