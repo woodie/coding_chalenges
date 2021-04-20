@@ -6,12 +6,12 @@ import (
   "strconv"
 )
 
-const SIZE = 10
+const Size = 10
 
-func coordinates_naive(img [SIZE][SIZE]int) string {
+func coordinates_naive(img [Size][Size]int) string {
   var x, y, w, h int
-  for r := 0; r < SIZE; r++ {
-    for c := 0; c < SIZE; c++ {
+  for r := 0; r < Size; r++ {
+    for c := 0; c < Size; c++ {
       if img[r][c] == 1 {
         if x == 0 { x = c }
         if y == 0 { y = r }
@@ -23,18 +23,18 @@ func coordinates_naive(img [SIZE][SIZE]int) string {
   return fmt.Sprintf("{ x:%d, y:%d, w:%d, h:%d }", x, y, w, h)
 }
 
-func coordinates_smart(img [SIZE][SIZE]int) string {
+func coordinates_smart(img [Size][Size]int) string {
   var x, y, w, h int
-  for r := 0; r < SIZE; r++ {
+  for r := 0; r < Size; r++ {
     if indexOf(img[r], 1) == -1 { continue }
 
-    for c := 0; c < SIZE; c++ {
+    for c := 0; c < Size; c++ {
       if img[r][c] == 1 {
         x = c
         y = r
         w = lastIndexOf(img[r], 1) - x + 1
-        for z := y; z < SIZE + 1; z++ {
-          if z == SIZE || indexOf(img[z], 1) == -1 {
+        for z := y; z < Size + 1; z++ {
+          if z == Size || indexOf(img[z], 1) == -1 {
             h = z - r
             return fmt.Sprintf("{ x:%d, y:%d, w:%d, h:%d }", x, y, w, h)
           }
@@ -45,11 +45,10 @@ func coordinates_smart(img [SIZE][SIZE]int) string {
   return ""
 }
 
-func plot_rect_on_board(x int, y int, w int, h int) [SIZE][SIZE]int {
-  var board [SIZE][SIZE]int
-  for row := 0; row < SIZE; row++ {
-    for col := 0; col < SIZE; col++ {
-      board[row][col] = 0
+func plot_rect_on_board(x int, y int, w int, h int) [Size][Size]int {
+  var board [Size][Size]int
+  for row := 0; row < Size; row++ {
+    for col := 0; col < Size; col++ {
       if row >= x + 1 &&
          col >= y - 1 &&
          col <= w + x - 1 &&
@@ -59,19 +58,19 @@ func plot_rect_on_board(x int, y int, w int, h int) [SIZE][SIZE]int {
   return board
 }
 
-func render_entire_artboard(img [SIZE][SIZE]int) {
+func render_entire_artboard(img [Size][Size]int) {
   var buffer bytes.Buffer
   buffer.WriteString("\n   ")
-  for n := 0; n < SIZE; n++ {
+  for n := 0; n < Size; n++ {
     buffer.WriteString(" ")
     buffer.WriteString(strconv.Itoa(n % 10))
   }
   buffer.WriteString("\n")
-  for r := 0; r < SIZE; r++ {
+  for r := 0; r < Size; r++ {
     if r < 100 { buffer.WriteString(" ") }
     if r < 10 { buffer.WriteString(" ") }
     buffer.WriteString(strconv.Itoa(r))
-    for c := 0; c < SIZE; c++ {
+    for c := 0; c < Size; c++ {
       if (img[r][c] != 1) {
         buffer.WriteString(" .")
       } else {
@@ -83,14 +82,14 @@ func render_entire_artboard(img [SIZE][SIZE]int) {
   fmt.Println(buffer.String())
 }
 
-func indexOf(data [SIZE]int, element int) (int) {
+func indexOf(data [Size]int, element int) (int) {
   for i := 0; i < len(data); i++ {
     if data[i] == element { return i }
   }
   return -1
 }
 
-func lastIndexOf(data [SIZE]int, element int) (int) {
+func lastIndexOf(data [Size]int, element int) (int) {
   for i := len(data)-1; i >= 0; i-- {
     if data[i] == element { return i }
   }
@@ -98,7 +97,7 @@ func lastIndexOf(data [SIZE]int, element int) (int) {
 }
 
 func main() {
-  var board [SIZE][SIZE]int
+  var board [Size][Size]int
   board = plot_rect_on_board(2,3,4,5)
   render_entire_artboard(board)
   fmt.Println(coordinates_naive(board))

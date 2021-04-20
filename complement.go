@@ -7,7 +7,6 @@ import (
 
 // return the index of first pairs that add up to target
 func complementary_pair(target int, data []int) string {
-  out := ""
   memo := make(map[int] int)
   for idx := 0; idx < len(data); idx++ {
     num := data[idx]
@@ -15,12 +14,10 @@ func complementary_pair(target int, data []int) string {
     memo[com] = idx
     if alt, ok:= memo[num]; ok {
       if alt == idx { continue }
-      array := fmt.Sprintf(strings.Join(strings.Split(fmt.Sprint(data), " "), ", "))
-      out = fmt.Sprintf("%d + %d = %d at [%d, %d] of %s", com, num, target, memo[num], idx, array)
-      break
+      return fmt.Sprintf("%d + %d = %d at [%d, %d] of %s", com, num, target, memo[num], idx, strings.Replace(fmt.Sprint(data), " ", ", ", -1))
     }
   }
-  return out
+  return ""
 }
 
 func main() {
