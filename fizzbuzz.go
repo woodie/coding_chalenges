@@ -1,21 +1,25 @@
 package main
 
 import (
-  "fmt"
-  "bytes"
+	"bytes"
+	"fmt"
 )
 
 func main() {
-  for i := 1; i < 101; i++ {
-    var out bytes.Buffer
-    if i % 3 == 0 { out.WriteString("Fizz") }
-    if i % 5 == 0 { out.WriteString("Buzz") }
-    if out.Len() == 0 {
-      fmt.Println(i)
-    } else {
-      fmt.Println(out.String())
-    }
-  }
+	for i := 1; i < 101; i++ {
+		var out bytes.Buffer
+		if i%3 == 0 {
+			out.WriteString("Fizz")
+		}
+		if i%5 == 0 {
+			out.WriteString("Buzz")
+		}
+		if out.Len() == 0 {
+			fmt.Println(i)
+		} else {
+			fmt.Println(out.String())
+		}
+	}
 }
 
 /*
