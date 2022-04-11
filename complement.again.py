@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Given an array of integers num and an integer target,
+# Given an array of integers nums and an integer target,
 # return values of the two numbers such that they add up to target.
 
 # You may assume that each input would have exactly one solution,
