@@ -12,25 +12,20 @@ end
 # Given two binary treet, determine whether
 # they have the same inorder traversal.
 #
-#     Tree 1          Tree 2
+#    Tree 1          Tree 2
 #
-#        5              3
+#       5              3
 #      / \            / \
 #     3   7          1   6
 #    /   /              / \
 #   1   6              5   7
 
-n_1_1 = BSTnode.new(1)
-n_1_6 = BSTnode.new(6)
-n_1_3 = BSTnode.new(3, n_1_1)
-n_1_7 = BSTnode.new(7, n_1_6)
+n_1_3 = BSTnode.new(3, BSTnode.new(1))
+n_1_7 = BSTnode.new(7, BSTnode.new(6))
 tree1 = BSTnode.new(5, n_1_3, n_1_7)
 
-n_2_5 = BSTnode.new(5)
-n_2_7 = BSTnode.new(7)
-n_2_1 = BSTnode.new(1)
-n_2_6 = BSTnode.new(6, n_2_5, n_2_7)
-tree2 = BSTnode.new(3, n_2_1, n_2_6)
+n_2_6 = BSTnode.new(6, BSTnode.new(5), BSTnode.new(7))
+tree2 = BSTnode.new(3, BSTnode.new(1), n_2_6)
 
 def inorder(node, list = [])
   return if node.nil?
