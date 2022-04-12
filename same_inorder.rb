@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
 
-def inorder(node)
+def inorder(node, list = [])
   return if node.nil?
-  [inorder(node.left), node.value, inorder(node.right)]
+  inorder(node.left, list)
+  list << node.value
+  inorder(node.right, list)
+  list
 end
 
 class BSTnode
@@ -14,23 +17,21 @@ class BSTnode
   end
 end
 
-n1_1 = BSTnode.new(1)
-n1_6 = BSTnode.new(6)
-n1_3 = BSTnode.new(3, n1_1)
-n1_7 = BSTnode.new(7, n1_6)
-tr_1 = BSTnode.new(5, n1_3, n1_7)
+n_1_1 = BSTnode.new(1)
+n_1_6 = BSTnode.new(6)
+n_1_3 = BSTnode.new(3, n_1_1)
+n_1_7 = BSTnode.new(7, n_1_6)
+tree1 = BSTnode.new(5, n_1_3, n_1_7)
 
-n2_5 = BSTnode.new(5)
-n2_7 = BSTnode.new(7)
-n2_1 = BSTnode.new(1)
-n2_6 = BSTnode.new(6, n2_5, n2_7)
-tr_2 = BSTnode.new(3, n2_1, n2_6)
+n_2_5 = BSTnode.new(5)
+n_2_7 = BSTnode.new(7)
+n_2_1 = BSTnode.new(1)
+n_2_6 = BSTnode.new(6, n_2_5, n_2_7)
+tree2 = BSTnode.new(3, n_2_1, n_2_6)
 
-def same_inorder(tree1, tree2)
-  puts inorder(tree1).compact.flatten == inorder(tree2).compact.flatten
-end
-
-same_inorder(tr_1, tr_2)
+list1 = inorder(tree1)
+list2 = inorder(tree2)
+puts list1 == list2
 
 __END__
 
