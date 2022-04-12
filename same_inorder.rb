@@ -2,7 +2,7 @@
 
 def inorder(node)
   return if node.nil?
-  [inorder(node.left), node.value, inorder(node.right)].compact.flatten
+  [inorder(node.left), node.value, inorder(node.right)]
 end
 
 class BSTnode
@@ -27,9 +27,7 @@ n2_6 = BSTnode.new(6, n2_5, n2_7)
 tr_2 = BSTnode.new(3, n2_1, n2_6)
 
 def same_inorder(tree1, tree2)
-  puts inorder(tree1).inspect
-  puts inorder(tree2).inspect
-  puts inorder(tree1) == inorder(tree2)
+  puts inorder(tree1).compact.flatten == inorder(tree2).compact.flatten
 end
 
 same_inorder(tr_1, tr_2)
