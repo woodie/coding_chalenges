@@ -42,7 +42,7 @@ def inorder_check(node, list)
   return [list, false] if node.value != list.shift
   rl, rs = inorder_check(node.right, list)
   return [rl, false] unless rs
-  return [list, true]
+  [list, true]
 end
 
 # compare each list
