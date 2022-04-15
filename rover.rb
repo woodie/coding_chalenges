@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 
 class Field
-  attr_accessor :w, :h, :x, :y, :d
+  attr_accessor :w, :h, :x, :y, :d, :field
   DIR = %w[N E S W]
+  CUR = %W[▲ ▶ ▼ ◀]
 
   def initialize(w, h, x, y, c)
     self.w = w
@@ -10,15 +11,17 @@ class Field
     self.x = x
     self.y = y
     self.d = DIR.index(c) || 0
-    puts "#{x} #{y} (#{DIR[d]})"
+    self.field = Array.new(h) { Array.new(w) { "." } }
+    plot
+    puts " #{x} #{y} (#{DIR[d]})"
   end
 
   def move(cmd)
     cmd.each_char do |c|
       if c == "M"
-        if d == 0 && y < h # N
+        if d == 0 && y < h - 1 # N
           self.y += 1
-        elsif d == 1 && x < w # E
+        elsif d == 1 && x < w - 1 # E
           self.x += 1
         elsif d == 2 && y > 0 # S
           self.y -= 1
@@ -30,19 +33,44 @@ class Field
       elsif c == "R"
         self.d = d == 3 ? 0 : d + 1
       end
-      print "#{c} "
+      plot
     end
-    puts "\n"
-    puts "#{x} #{y} (#{DIR[d]})"
+    puts " #{cmd}\n #{x} #{y} (#{DIR[d]})"
+    show
+  end
+
+  def plot
+    field[self.y][self.x] = CUR[d]
+  end
+
+  def show
+    print "\n"
+    (field.first.size - 1).downto(0) do |r|
+      print r > 9 ? r.to_s : " #{r}"
+      field[r].each_with_index do |col, c|
+        print " #{field[r][c]}"
+      end
+      print "\n"
+    end
+    print "  "
+    0.upto(field.first.size - 1) { |n| print n > 9 ? " " : " #{n}" }
+    print "\n\n"
   end
 end
 
-field = Field.new(5, 5, 1, 2, "N")
+field = Field.new(5, 5, 1, 1, "N")
 
-field.move("MLMRML")
+field.move("MLMMMMMRMRMMMMMMMRMM")
 
 __END__
 
-1 2 (N)
-M L M R M L
-0 4 (W)
+ 1 1 (N)
+ MLMMMMMRMRMMMMMMMRMM
+ 4 1 (S)
+
+ 4 . . . . .
+ 3 ▶ ▶ ▶ ▶ ▼
+ 2 ▲ ◀ . . ▼
+ 1 . ▲ . . ▼
+ 0 . . . . .
+   0 1 2 3 4
