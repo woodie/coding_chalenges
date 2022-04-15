@@ -40,3 +40,9 @@ end
 field = Field.new(5, 5, 1, 2, "N")
 
 field.move("MLMRML")
+
+__END__
+
+1 2 (N)
+M L M R M L
+0 4 (W)
