@@ -10,7 +10,7 @@ class Field
     self.x = x
     self.y = y
     self.d = DIR.index(c) || 0
-    # puts "#{x} #{y} (#{DIR[d]})"
+    puts "#{x} #{y} (#{DIR[d]})"
   end
 
   def move(cmd)
@@ -30,12 +30,13 @@ class Field
       elsif c == "R"
         self.d = d == 3 ? 0 : d + 1
       end
-      # puts "#{c}: #{x} #{y} #{DIR[d]}"
+      print "#{c} "
     end
+    puts "\n"
     puts "#{x} #{y} (#{DIR[d]})"
   end
 end
 
 field = Field.new(5, 5, 1, 2, "N")
 
-puts field.move("MLMRML")
+field.move("MLMRML")
