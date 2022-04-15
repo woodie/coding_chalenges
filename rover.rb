@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+# Init with field size and rover location/direction.
+# Accept commands to M(ove) and rotate L(eft) and R(ight).
+# Ignore commands to move off the field.
+
 class Field
   attr_accessor :w, :h, :x, :y, :d, :field
   DIR = %w[N E S W]
