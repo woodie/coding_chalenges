@@ -5,24 +5,23 @@
 # Accept commands to M(ove) and rotate L(eft) and R(ight).
 # Ignore commands to move off the field.
 
-drs = ["N", "E", "S", "W"]
-cur = ["▲", "▶", "▼", "◀"]
+DIR = ["N", "E", "S", "W"]
+CUR = ["▲", "▶", "▼", "◀"]
 
 
 class Field:
 
     def __init__(self, w, h, x, y, c):
-        global drs
         self.w = w
         self.h = h
         self.x = x
         self.y = y
-        self.d = drs.index(c)
+        self.d = DIR.index(c)
         self.field = []
-        for r in range(0, h):
+        for r in range(h):
             self.field.append(["."] * w)
         self.plot()
-        print(" %s %s (%s)" % (x, y, drs[self.d]))
+        print(" %s %s (%s)" % (x, y, DIR[self.d]))
 
     def move(self, cmd):
         for c in cmd:
@@ -40,12 +39,11 @@ class Field:
             elif c == "R":
                 self.d = 0 if self.d == 3 else self.d + 1
             self.plot()
-        print(" %s\n %s %s (%s)" % (cmd, self.x, self.y, drs[self.d]))
+        print(" %s\n %s %s (%s)" % (cmd, self.x, self.y, DIR[self.d]))
         self.show()
 
     def plot(self):
-        global cur
-        self.field[self.y][self.x] = cur[self.d]
+        self.field[self.y][self.x] = CUR[self.d]
 
     def show(self):
         print
@@ -55,7 +53,7 @@ class Field:
                 print(c),
             print
         print("  "),
-        for n in range(0, self.w):
+        for n in range(self.w):
             print(n % 10),
         print
 
