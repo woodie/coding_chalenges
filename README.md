@@ -12,3 +12,9 @@ For the typescript sheband, we need [this wrapper](https://gist.github.com/woodi
 The `Ruby` and `Python` examples should just work although some my need to be updated to version 3.
 
 The `Go` and `Rust` examples are sparce but we hope to add more.
+
+## Linting
+```
+standardrb --fix filename.rb
+autopep8 --in-place --aggressive --aggressive filename.py
+```

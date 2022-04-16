@@ -57,7 +57,7 @@ class Field
       print "\n"
     end
     print "  "
-    0.upto(field.first.size - 1) { |n| print n > 9 ? " " : " #{n}" }
+    0.upto(field.first.size - 1) { |n| print " #{n % 10}"}
     print "\n\n"
   end
 end
