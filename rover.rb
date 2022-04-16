@@ -44,14 +44,14 @@ class Field
   end
 
   def plot
-    field[self.y][self.x] = CUR[d]
+    field[y][x] = CUR[d]
   end
 
   def show
     print "\n"
-    (field.first.size - 1).downto(0) do |r|
+    (h - 1).downto(0) do |r|
       print r > 9 ? r.to_s : " #{r}"
-      field[r].each_with_index do |col, c|
+      0.upto(w - 1) do |c|
         print " #{field[r][c]}"
       end
       print "\n"
