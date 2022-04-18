@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 
-# Init with field size and rover location/direction.
+# Init with field size and location/direction.
 # Accept commands to M(ove) and rotate L(eft) and R(ight).
 # Ignore commands to move off the field.
 
-class Field
+class Rover
   attr_accessor :w, :h, :x, :y, :d, :field
   DIR = %w[N E S W]
   CUR = %W[▲ ▶ ▼ ◀]
@@ -62,9 +62,8 @@ class Field
   end
 end
 
-field = Field.new(5, 5, 1, 1, "N")
-
-field.move("MLMMMMMRMRMMMMMMMRMM")
+rover = Rover.new(5, 5, 1, 1, "N")
+rover.move("MLMMMMMRMRMMMMMMMRMM")
 
 __END__
 

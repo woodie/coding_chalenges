@@ -17,4 +17,5 @@ The `Go` and `Rust` examples are sparce but we hope to add more.
 ```
 standardrb --fix filename.rb
 autopep8 --in-place --aggressive filename.py
+gofmt filename.go > newfile.go
 ```

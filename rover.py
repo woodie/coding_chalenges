@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Init with field size and rover location/direction.
+# Init with field size and location/direction.
 # Accept commands to M(ove) and rotate L(eft) and R(ight).
 # Ignore commands to move off the field.
 
@@ -9,7 +9,7 @@ DIR = ["N", "E", "S", "W"]
 CUR = ["▲", "▶", "▼", "◀"]
 
 
-class Field:
+class Rover:
 
     def __init__(self, w, h, x, y, c):
         self.w = w
@@ -58,9 +58,8 @@ class Field:
         print
 
 
-field = Field(5, 5, 1, 1, "N")
-
-field.move("MLMMMMMRMRMMMMMMMRMM")
+rover = Rover(5, 5, 1, 1, "N")
+rover.move("MLMMMMMRMRMMMMMMMRMM")
 
 """
  1 1 (N)
