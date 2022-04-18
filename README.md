@@ -19,3 +19,10 @@ standardrb --fix filename.rb
 autopep8 --in-place --aggressive filename.py
 gofmt filename.go > newfile.go
 ```
+
+```
+⭠ ⭢ ⭡ ⭣
+← → ↑ ↓
+⇐ ⇒ ⇑ ⇓
+◀ ▶ ▲ ▼
+```
