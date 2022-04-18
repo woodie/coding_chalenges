@@ -7,13 +7,7 @@ package main
 
 import (
 	"fmt"
-)
-
-const (
-	N int = 0
-	E int = 1
-	S int = 2
-	W int = 3
+	"strings"
 )
 
 var DIR = [4]string{"N", "E", "S", "W"}
@@ -28,8 +22,12 @@ type Rover struct {
 	f [][]string
 }
 
-func NewRover(w, h, x, y, d int) *Rover {
-	return &Rover{w, h, x, y, d, field(w, h)}
+func NewRover(w, h, x, y int, s string) *Rover {
+	d := strings.Index(strings.Join(DIR[:], ""), s)
+	rover := Rover{w, h, x, y, d, field(w, h)}
+	plot(rover)
+	fmt.Println(fmt.Sprintf(" %d %d (%s)", rover.x, rover.y, DIR[rover.d]))
+	return &rover
 }
 
 func move(self Rover, cmd string) {
@@ -60,21 +58,8 @@ func move(self Rover, cmd string) {
 		}
 		plot(self)
 	}
-	fmt.Println(fmt.Sprintf(" %s", cmd))
-	fmt.Println(fmt.Sprintf(" %d %d (%s)", self.x, self.y, DIR[self.d]))
+	fmt.Println(fmt.Sprintf(" %s\n %d %d (%s)", cmd, self.x, self.y, DIR[self.d]))
 	show(self)
-}
-
-func field(w int, h int) [][]string {
-	matrix := make([][]string, h)
-	rows := make([]string, h*w)
-	for i := 0; i < h; i++ {
-		matrix[i] = rows[i*w : (i+1)*w]
-		for j := 0; j < w; j++ {
-			matrix[i][j] = "."
-		}
-	}
-	return matrix
 }
 
 func plot(self Rover) {
@@ -100,10 +85,20 @@ func show(self Rover) {
 	fmt.Println()
 }
 
+func field(w int, h int) [][]string {
+	matrix := make([][]string, h)
+	rows := make([]string, h*w)
+	for i := 0; i < h; i++ {
+		matrix[i] = rows[i*w : (i+1)*w]
+		for j := 0; j < w; j++ {
+			matrix[i][j] = "."
+		}
+	}
+	return matrix
+}
+
 func main() {
-	var rover Rover = *NewRover(5, 5, 1, 1, N)
-	plot(rover)
-	fmt.Println(fmt.Sprintf(" %d %d (%s)", rover.x, rover.y, DIR[rover.d]))
+	var rover Rover = *NewRover(5, 5, 1, 1, "N")
 	move(rover, "MLMMMMMRMRMMMMMMMRMM")
 }
 
