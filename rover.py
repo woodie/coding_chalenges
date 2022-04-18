@@ -6,7 +6,7 @@
 # Ignore commands to move off the field.
 
 DIR = ["N", "E", "S", "W"]
-CUR = ["▲", "▶", "▼", "◀"]
+CUR = ["↑", "→", "↓", "←"]
 
 
 class Rover:

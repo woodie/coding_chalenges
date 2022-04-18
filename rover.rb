@@ -7,7 +7,7 @@
 class Rover
   attr_accessor :w, :h, :x, :y, :d, :field
   DIR = %w[N E S W]
-  CUR = %W[▲ ▶ ▼ ◀]
+  CUR = %W[↑ → ↓ ←]
 
   def initialize(w, h, x, y, c)
     self.w = w

@@ -17,7 +17,7 @@ const (
 )
 
 var DIR = [4]string{"N", "E", "S", "W"}
-var CUR = [4]string{"▲", "▶", "▼", "◀"}
+var CUR = [4]string{"↑", "→", "↓", "←"}
 
 type Rover struct {
 	w int
