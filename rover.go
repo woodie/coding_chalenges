@@ -28,8 +28,11 @@ type Rover struct {
 	f [][]string
 }
 
+func NewRover(w, h, x, y, d int) *Rover {
+	return &Rover{w, h, x, y, d, field(w, h)}
+}
+
 func move(self Rover, cmd string) {
-	fmt.Println(fmt.Sprintf(" %d %d (%s)", self.x, self.y, DIR[self.d]))
 	for i := 0; i < len(cmd); i++ {
 		c := string(cmd[i])
 		if c == "M" {
@@ -98,10 +101,9 @@ func show(self Rover) {
 }
 
 func main() {
-	w := 5
-	h := 5
-	rover := Rover{w, h, 1, 1, N, field(w, h)}
+	var rover Rover = *NewRover(5, 5, 1, 1, N)
 	plot(rover)
+	fmt.Println(fmt.Sprintf(" %d %d (%s)", rover.x, rover.y, DIR[rover.d]))
 	move(rover, "MLMMMMMRMRMMMMMMMRMM")
 }
 
