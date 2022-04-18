@@ -23,8 +23,16 @@ type Rover struct {
 }
 
 func NewRover(w, h, x, y int, s string) *Rover {
+	field := make([][]string, h)
+	rows := make([]string, h*w)
+	for i := 0; i < h; i++ {
+		field[i] = rows[i*w : (i+1)*w]
+		for j := 0; j < w; j++ {
+			field[i][j] = "."
+		}
+	}
 	d := strings.Index(strings.Join(DIR[:], ""), s)
-	rover := Rover{w, h, x, y, d, field(w, h)}
+	rover := Rover{w, h, x, y, d, field}
 	plot(rover)
 	fmt.Println(fmt.Sprintf(" %d %d (%s)", rover.x, rover.y, DIR[rover.d]))
 	return &rover
@@ -83,18 +91,6 @@ func show(self Rover) {
 		fmt.Printf(" %d", n%10)
 	}
 	fmt.Println()
-}
-
-func field(w int, h int) [][]string {
-	matrix := make([][]string, h)
-	rows := make([]string, h*w)
-	for i := 0; i < h; i++ {
-		matrix[i] = rows[i*w : (i+1)*w]
-		for j := 0; j < w; j++ {
-			matrix[i][j] = "."
-		}
-	}
-	return matrix
 }
 
 func main() {
