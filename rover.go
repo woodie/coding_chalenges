@@ -63,22 +63,45 @@ func move(self Rover, cmd string) {
 }
 
 func field(w int, h int) [][]string {
-	// TODO
-	return [][]string{}
+	matrix := make([][]string, h)
+	rows := make([]string, h*w)
+	for i := 0; i < h; i++ {
+		matrix[i] = rows[i*w : (i+1)*w]
+		for j := 0; j < w; j++ {
+			matrix[i][j] = "."
+		}
+	}
+	return matrix
 }
 
 func plot(self Rover) {
-	// TODO
+	self.f[self.y][self.x] = CUR[self.d]
 }
 
 func show(self Rover) {
-	// TODO
+	fmt.Println()
+	for i := self.h - 1; i > -1; i-- {
+		if i < 10 {
+			fmt.Printf(" ")
+		}
+		fmt.Printf("%d", i)
+		for j := 0; j < self.w; j++ {
+			fmt.Printf(" %s", self.f[i][j])
+		}
+		fmt.Println()
+	}
+	fmt.Printf("  ")
+	for n := 0; n < self.w; n++ {
+		fmt.Printf(" %d", n%10)
+	}
+	fmt.Println()
 }
 
 func main() {
 	w := 5
 	h := 5
 	rover := Rover{w, h, 1, 1, N, field(w, h)}
+	plot(rover)
 	move(rover, "MLMMMMMRMRMMMMMMMRMM")
 }
 
@@ -86,4 +109,11 @@ func main() {
  1 1 (N)
  MLMMMMMRMRMMMMMMMRMM
  4 1 (S)
+
+ 4 . . . . .
+ 3 ▶ ▶ ▶ ▶ ▼
+ 2 ▲ ◀ . . ▼
+ 1 . ▲ . . ▼
+ 0 . . . . .
+   0 1 2 3 4
 */
