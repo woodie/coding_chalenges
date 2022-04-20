@@ -7,7 +7,6 @@ package main
 
 import (
 	"fmt"
-	"netpress.com/ternary"
 	"strings"
 )
 
@@ -53,11 +52,9 @@ func move(self Rover, cmd string) {
 				self.x -= 1
 			}
 		} else if c == "L" {
-			// if self.d == 0 { self.d = 3 } else { self.d = self.d - 1 }
-			self.d = ternary.Int(self.d == 0, 3, self.d-1)
+			if self.d == 0 { self.d = 3 } else { self.d = self.d - 1 }
 		} else if c == "R" {
-			// if self.d == 3 { self.d = 0 } else { self.d = self.d + 1 }
-			self.d = ternary.Int(self.d == 3, 0, self.d+1)
+			if self.d == 3 { self.d = 0 } else { self.d = self.d + 1 }
 		}
 		plot(self)
 	}
