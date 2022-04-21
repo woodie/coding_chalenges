@@ -46,11 +46,11 @@ def check_list(records)
   exiting = []
   status = {}
   records.each do |user, action|
-    prev = status[user] || "exit"
+    prev = status[user]
 
     if !exiting.include?(user)
       # EXITING: recorded an enter without a matching exit
-      exiting << user if action == "enter" && prev != "exit"
+      exiting << user if action == "enter" && !(prev == "exit" || prev.nil?)
     end
 
     if !entering.include?(user)
