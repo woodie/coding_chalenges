@@ -19,19 +19,13 @@ Each collection should contain no duplicates, regardless of how
 many times a band member matches the criteria for belonging to it.
 */
 
-func map_set_strings(string_map map[string]bool) []string {
+func map_keys[T any](string_map map[string]T) []string {
 	out := []string{}
 	for k := range string_map {
 		out = append(out, k)
 	}
 	return out
 }
-
-/********************************
- * Compiles but not working yet *
- * - The map(set) is a mess     *
- * - Try input in JSON format   *
- ********* **********************/
 
 func check_list(records [][]string) [][]string {
 	entering := make(map[string]bool)
@@ -59,10 +53,7 @@ func check_list(records [][]string) [][]string {
 	}
 
 	// EXITING: recorded an enter without a matching FINAL exit
-	users := []string{}
-	for k := range status {
-		users = append(users, k)
-	}
+	users := map_keys[string](status)
 	for i := 0; i < len(status); i++ {
 		user := users[i]
 		action := status[user]
@@ -73,7 +64,7 @@ func check_list(records [][]string) [][]string {
 		}
 	}
 
-	return [][]string{map_set_strings(exiting), map_set_strings(entering)}
+	return [][]string{map_keys[bool](exiting), map_keys[bool](entering)}
 }
 
 func main() {
@@ -124,8 +115,8 @@ func main() {
 	}
 	// Expected output: ["Mic"], ["Mic"]
 
-	fmt.Println(badge_records_1)
-	fmt.Println(badge_records_2)
-	fmt.Println(badge_records_3)
-	fmt.Println(badge_records_4)
+	fmt.Println(check_list(badge_records_1))
+	fmt.Println(check_list(badge_records_2))
+	fmt.Println(check_list(badge_records_3))
+	fmt.Println(check_list(badge_records_4))
 }
