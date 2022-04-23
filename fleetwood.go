@@ -19,10 +19,10 @@ Each collection should contain no duplicates, regardless of how
 many times a band member matches the criteria for belonging to it.
 */
 
-func map_keys[T any](string_map map[string]T) []string {
-	out := []string{}
-	for k := range string_map {
-		out = append(out, k)
+func map_keys[K comparable, V any](m map[K]V) []K {
+	out := []K{}
+	for s := range m {
+		out = append(out, s)
 	}
 	return out
 }
@@ -35,26 +35,22 @@ func check_list(records [][]string) [][]string {
 		user, action := records[i][0], records[i][1]
 		prev := status[user]
 
-		if _, ok := exiting[user]; !ok {
-			// EXITING: recorded an enter without a matching exit
-			if action == "enter" && !(prev == "exit" || prev == "") {
-				exiting[user] = true
-			}
+		// EXITING: recorded an enter without a matching exit
+		if action == "enter" && !(prev == "exit" || prev == "") {
+			exiting[user] = true
 		}
 
-		if _, ok := entering[user]; !ok {
-			// ENTERING: recorded an exit without a matching enter.
-			if action == "exit" && prev != "enter" {
-				entering[user] = true
-			}
+		// ENTERING: recorded an exit without a matching enter.
+		if action == "exit" && prev != "enter" {
+			entering[user] = true
 		}
 
 		status[user] = action
 	}
 
 	// EXITING: recorded an enter without a matching FINAL exit
-	users := map_keys[string](status)
-	for i := 0; i < len(status); i++ {
+	users := map_keys[string, string](status)
+	for i := 0; i < len(users); i++ {
 		user := users[i]
 		action := status[user]
 		if _, ok := exiting[user]; !ok {
@@ -64,7 +60,7 @@ func check_list(records [][]string) [][]string {
 		}
 	}
 
-	return [][]string{map_keys[bool](exiting), map_keys[bool](entering)}
+	return [][]string{map_keys[string, bool](exiting), map_keys[string, bool](entering)}
 }
 
 func main() {
