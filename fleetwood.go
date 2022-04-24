@@ -66,48 +66,48 @@ func check_list(records [][]string) [][]string {
 func main() {
 
 	badge_records_1 := [][]string{
-		[]string{"Lindsey", "exit"},
-		[]string{"Mic", "enter"},
-		[]string{"Lindsey", "enter"},
-		[]string{"Stevie", "enter"},
-		[]string{"Lindsey", "exit"},
-		[]string{"Christine", "enter"},
-		[]string{"Mic", "enter"},
-		[]string{"John", "exit"},
-		[]string{"John", "enter"},
-		[]string{"Mic", "exit"},
-		[]string{"Lindsey", "enter"},
-		[]string{"Lindsey", "exit"},
-		[]string{"Christine", "exit"},
-		[]string{"Mic", "enter"},
-		[]string{"Mic", "enter"},
-		[]string{"Lindsey", "exit"},
-		[]string{"Mic", "enter"},
-		[]string{"Mic", "enter"},
-		[]string{"Mic", "exit"},
-		[]string{"Mic", "exit"},
+		{"Lindsey", "exit"},
+		{"Mic", "enter"},
+		{"Lindsey", "enter"},
+		{"Stevie", "enter"},
+		{"Lindsey", "exit"},
+		{"Christine", "enter"},
+		{"Mic", "enter"},
+		{"John", "exit"},
+		{"John", "enter"},
+		{"Mic", "exit"},
+		{"Lindsey", "enter"},
+		{"Lindsey", "exit"},
+		{"Christine", "exit"},
+		{"Mic", "enter"},
+		{"Mic", "enter"},
+		{"Lindsey", "exit"},
+		{"Mic", "enter"},
+		{"Mic", "enter"},
+		{"Mic", "exit"},
+		{"Mic", "exit"},
 	}
 	// Expected output: ["Mic", "John", "Stevie"], ["Lindsey", "John", "Mic"]
 
 	badge_records_2 := [][]string{
-		[]string{"Mic", "enter"},
-		[]string{"Mic", "exit"},
+		{"Mic", "enter"},
+		{"Mic", "exit"},
 	}
 	// Expected output: [], []
 
 	badge_records_3 := [][]string{
-		[]string{"Mic", "enter"},
-		[]string{"Mic", "enter"},
-		[]string{"Mic", "exit"},
-		[]string{"Mic", "exit"},
+		{"Mic", "enter"},
+		{"Mic", "enter"},
+		{"Mic", "exit"},
+		{"Mic", "exit"},
 	}
 	// Expected output: ["Mic"], ["Mic"]
 
 	badge_records_4 := [][]string{
-		[]string{"Mic", "enter"},
-		[]string{"Mic", "exit"},
-		[]string{"Mic", "exit"},
-		[]string{"Mic", "enter"},
+		{"Mic", "enter"},
+		{"Mic", "exit"},
+		{"Mic", "exit"},
+		{"Mic", "enter"},
 	}
 	// Expected output: ["Mic"], ["Mic"]
 
