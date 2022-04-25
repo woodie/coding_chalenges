@@ -3,12 +3,12 @@
 # Write a function which returns the maximum number of concurrent users logged in at the same time.
 
 data = [
-  {userId: "userId1", loginTime: 2, logoutTime: 5},
-  {userId: "userId2", loginTime: 3, logoutTime: 7},
-  {userId: "userId3", loginTime: 3, logoutTime: 5}, # added
-  {userId: "userId4", loginTime: 1, logoutTime: 10},
-  {userId: "userId5", loginTime: 15, logoutTime: 15},
-  {userId: "userId6", loginTime: 14, logoutTime: 16}
+  {userId: 1, loginTime: 2, logoutTime: 5},
+  {userId: 2, loginTime: 3, logoutTime: 7},
+  {userId: 3, loginTime: 3, logoutTime: 5}, # added
+  {userId: 4, loginTime: 1, logoutTime: 10},
+  {userId: 5, loginTime: 15, logoutTime: 15},
+  {userId: 6, loginTime: 14, logoutTime: 16}
 ]
 # loginTime: 1, logoutTime: 10   1
 # loginTime: 2, logoutTime: 5    2
@@ -28,5 +28,5 @@ def maximum_number_users(users)
   max
 end
 
-users = data.sort_by { |h| [h[:loginTime], h[:logoutTime]] }
+users = data.sort_by { |h| h[:loginTime] }
 puts maximum_number_users(users)
