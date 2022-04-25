@@ -28,7 +28,7 @@ def calculateClicksByDomain(counts)
       parts.shift
     end
   end
-  data.sort_by { |k, v| v }.reverse.map { |k, v| "#{k}:#{" " * (max - k.size + 1)}#{v}" }.join("\n")
+  data.sort_by { |k, v| v }.reverse.map { |k, v| "#{k}:#{" " * (max - k.size)} #{v}" }.join("\n")
 end
 
 puts calculateClicksByDomain(counts)

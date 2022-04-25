@@ -28,10 +28,11 @@ def calculateClicksByDomain(counts):
             sub = ".".join(parts)
             data[sub] = (0 if sub not in data else data[sub]) + int(c)
             parts.pop(0)
-    pairs = sorted(data.items(), key=lambda x: x[1], reverse=True)
+    tuples = sorted(data.items(), key=lambda x: x[1], reverse=True)
     out = []
-    for pair in pairs:
-        out.append("%s:%s %d" % (pair[0], " " * (max - len(pair[0])), pair[1]))
+    for tup in tuples:
+        k, v = tup
+        out.append("%s:%s %d" % (k, " " * (max - len(k)), v))
     return "\n".join(out)
 
 
