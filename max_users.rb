@@ -21,11 +21,8 @@ def maximum_number_users(users)
   tree = [] # should be tree
   max = 0
   users.each do |node|
-    cur_time = node[:loginTime]
-    out_time = node[:logoutTime]
-
-    tree << out_time # should be method
-    tree.reject! { |x| x < cur_time } # should be method
+    tree << node[:logoutTime]
+    tree.reject! { |x| x < node[:loginTime] }
     max = tree.size if tree.size > max
   end
   max
