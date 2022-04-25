@@ -1,3 +1,4 @@
+///usr/bin/true; exec /usr/bin/env go run "$0" "$@" ; exit
 package main
 
 import (
@@ -17,7 +18,9 @@ func complement(nums []int, target int) []int {
 	for idx := 0; idx < len(nums); idx++ {
 		num := nums[idx]
 		cmp := target - num
-		if (complements[cmp]) { return []int{cmp, num} }
+		if (complements[cmp]) {
+			return []int{cmp, num}
+		}
 		complements[num] = true
 	}
 	return []int{}
