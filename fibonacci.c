@@ -1,5 +1,5 @@
 // cc fibonacci.c -o fibonacci.out; ./fibonacci.out
-#include<stdio.h>
+#include <stdio.h>
 #include <time.h>
 
 int fib(int n) {
