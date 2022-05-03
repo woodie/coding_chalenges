@@ -1,5 +1,5 @@
 #!/usr/bin/java --source 11
-class Fibonacci {
+class fibonacci {
   
     static int fib(int n) {
         if (n <= 1) return n;
