@@ -10,7 +10,7 @@ class Fibonacci {
     main(String args[]) {
         long start = System.currentTimeMillis();
         fib(40);
-        long secs = System.currentTimeMillis() - start;
-        System.out.printf("java..... %.6f seconds%n", secs/1e3);
+        long millis = System.currentTimeMillis() - start;
+        System.out.printf("java..... %.6f seconds%n", millis/1e3);
     }
 }
