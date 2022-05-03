@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-./Fibonacci.sh
+./fibonacci.sh
 ./fibonacci.go
 ./fibonacci.rs
 ./fibonacci.js
