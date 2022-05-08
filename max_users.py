@@ -20,15 +20,15 @@ data = [
 
 
 def maximum_number_users(users):
-    tree = []  # should be tree
+    times = [] # should be a tree
     max_cu = 0
     for node in users:
-        tree.append(node['logoutTime'])
-        for x in tree:
+        times.append(node['logoutTime'])
+        for x in times:
             if x < node['loginTime']:
-                tree.remove(x)
-        if len(tree) > max_cu:
-            max_cu = len(tree)
+                times.remove(x)
+        if len(times) > max_cu:
+            max_cu = len(times)
     return max_cu
 
 

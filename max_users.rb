@@ -18,12 +18,12 @@ data = [
 # loginTime: 15, logoutTime: 15  2
 
 def maximum_number_users(users)
-  tree = [] # should be tree
+  times = [] # should be a tree
   max = 0
   users.each do |node|
-    tree << node[:logoutTime]
-    tree.reject! { |x| x < node[:loginTime] }
-    max = tree.size if tree.size > max
+    times << node[:logoutTime]
+    times.reject! { |x| x < node[:loginTime] }
+    max = times.size if times.size > max
   end
   max
 end

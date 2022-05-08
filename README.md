@@ -18,5 +18,5 @@ The `Go` and `Rust` examples are sparce but we hope to add more.
 eslint --fix filename.js
 standardrb --fix filename.rb
 autopep8 --in-place --aggressive filename.py
-gofmt filename.go > newfile.go
+gofmt -s -w filename.go
 ```
