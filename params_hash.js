@@ -20,13 +20,13 @@ const params_hash = (url) => {
     if (k.endsWith("[]")) {
       k = k.slice(0, -2);
       if (!Array.isArray(out[k])) {
-        out[k] = []
+        out[k] = [];
       }
       out[k].push(v);
     } else if (k.endsWith("]")) {
       let [n, s] = k.split("[");
       s = s.slice(0, -1);
-      if (typeof out[n] !== 'object') {
+      if (typeof out[n] !== "object") {
         out[n] = {};
       }
       out[n][s] = v;
@@ -35,7 +35,7 @@ const params_hash = (url) => {
     }
   }
   return out;
-}
+};
 
 for (let url of urls) {
   console.log(params_hash(url));
