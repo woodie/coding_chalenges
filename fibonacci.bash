@@ -9,12 +9,12 @@ jruby fibonacci.rb
 ruby fibonacci.rb
 ./fibonacci.py
 
-# java..... 0.166000 seconds
-# golang... 0.243190 seconds
-# c........ 0.376225 seconds
-# rust..... 0.425000 seconds
-# node..... 0.582000 seconds
-# elixir... 1.384001 seconds
-# jruby.... 1.985102 seconds
-# ruby..... 6.572034 seconds
-# python... 11.42842 seconds
+# java..... 0.190000 seconds
+# golang... 0.226040 seconds
+# c........ 0.350677 seconds
+# rust..... 0.420000 seconds
+# node..... 0.584000 seconds
+# elixir... 1.378001 seconds
+# jruby.... 2.003334 seconds
+# ruby..... 6.566348 seconds
+# python.. 11.279514 seconds
