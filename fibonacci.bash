@@ -3,6 +3,7 @@
 ./fibonacci.go
 cc fibonacci.c -o fibonacci.out; ./fibonacci.out
 ./fibonacci.rs
+./fibonacci.ts
 ./fibonacci.js
 ./fibonacci.exs
 jruby fibonacci.rb
@@ -13,6 +14,7 @@ ruby fibonacci.rb
 # golang... 0.226040 seconds
 # c........ 0.350677 seconds
 # rust..... 0.420000 seconds
+# ts....... 0.619000 seconds
 # node..... 0.584000 seconds
 # elixir... 1.378001 seconds
 # jruby.... 2.003334 seconds
